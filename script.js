@@ -1,38 +1,60 @@
-// script.js
+let currentStep = 1;
+const maxStep = 2;
 
-// Get references to the form and result elements
-const payslipForm = document.getElementById('payslipForm');
-const resultSection = document.getElementById('resultSection');
+function showStep(step) {
+    document.querySelectorAll('.form-step').forEach((element) => {
+        element.style.display = 'none';
+    });
+    document.querySelector('#step' + step).style.display = 'block';
+}
 
-// Add event listener for form submission
-payslipForm.addEventListener('submit', function(e) {
-  e.preventDefault(); // Prevent default form submission behavior
-  console.log("Submit button clicked"); 
 
-  // Get values from input fields
-  const employeeName = document.getElementById('employeeName').value;
-  const hoursWorked = parseInt(document.getElementById('hoursWorked').value);
-  const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
-  const taxRatePercentage = parseFloat(document.getElementById('taxRate').value);
-
-  // Calculate pay based on hours worked and hourly rate
-  let totalPayBeforeTax = hoursWorked * hourlyRate;
+function validateStep1() {
+    const employeeName = document.getElementById("employeeName").value;
+    const employeeId = document.getElementById("employeeId").value;
+    const department = document.getElementById("department").value;
+    const gender = document.getElementById("gender").value;
   
- let taxAmount =(totalPayBeforeTax * (taxRatePercentage /100));
+    if (employeeName && employeeId && department && gender) {
+      nextStep();
+    } else {
+      alert("Please fill in all the fields in Step 1 before moving to the next step.");
+    }
+  }
+  
+  function nextStep() {
+    if (currentStep < maxStep) {
+        currentStep++;
+        showStep(currentStep);
+    }
 
- 
- let totalPayAfterTax =(totalPayBeforeTax - taxAmount);
+  }
+  
+  const form = document.querySelector('form');
+  const submitButton = document.querySelector('input[type="submit"]');
+  
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+  
+    // Perform form validation and data processing here
+    // ...
+  
+    // Display the alert message
+    alert('Successful');
+  
+    // Reset the form to its initial state
+    form.reset();
+  
+    // Hide the second page
+    step2.style.display = 'none';
+  
+    // Show the first page
+    step1.style.display = 'block';
+  
+    // Optionally, disable the submit button or change its appearance
+    // submitButton.disabled = true;
+    // submitButton.value = 'Submitted';
+  });
 
 
-const payslipForm=`
-<h2>Payslip For ${employeeName}</h2>
-<p> Hours Worked : ${hoursWorked}</p>
-<p> Hourly Rate : $${hourlyRate.toFixed(2)}</p>;
-<p>Total Pay Before Tax : $${totalPayBeforeTax.toFixed(2)}</p>;
-<p>Tax Amount (${taxRatePercentage}%): $${taxAmount.toFixed(2)}</p>;
-<p>Total Pay After Tax : $${totalPayAfterTax.toFixed(2)}</p>;
-
-`;
-resultSection.innerHTML=payslipForm;
-
-});
+  
