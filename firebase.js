@@ -1,7 +1,6 @@
- type="module"
-// Import the functions you need from the SDKs you need
+// Import the necessary Firebase SDK modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,20 +15,8 @@ measurementId: "G-9DGC2CVT6Y"
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 //get ref to database services
 const database = getDatabase("app");
 
-document.getElementById("submit").addEventListener('click', function(e){
-e.preventDefault(),
+export { database, ref, set };
 
-set(ref(database, 'user/' + document.getElementById("employeeName").value), {
-    employeeName: document.getElementById("employeeName").value,
-    employeeId: document.getElementById("employeeId").value,
-    department: document.getElementById("department").value,
-    gender: document.getElementById("gender").value,
-    salary: document.getElementById("salary").value,
-
-})
-
-});

@@ -1,56 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-step Form</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-step Form</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <div class="form-container">
+      <fieldset>
+        <form id="myForm">
+          <!-- Step 1 -->
+          <div id="step1" class="form-step">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required />
 
-<body>
-  <div class="form-container">
-    <fieldset>
-      <form id="multiStepForm">
-        <div class="form-step active" id="step1" value="step1">
-          <h1>Step 1: Personal Information</h1>
-          <p>Fill the form with the required details</p>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required />
 
-          <label for="employeeName">Employees Name:</label>
-          <input required type="text" id="employeeName" required>
+            <label for="otherName">Other Name:</label>
+            <input type="text" id="otherName" />
 
-          <label for="employeeId">Employees Id:</label>
-          <input type="number" id="employeeId" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required />
 
-          <label for="department">Department:</label>
-          <input type="text" id="department" required>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" required />
 
-          <label for="gender">Gender:</label>
-          <select id="gender" name="gender" required>
-            <option value="">Select...</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+            <label for="address1">Address Line 1:</label>
+            <input type="text" id="address1" required />
 
-          <button type="next" onclick="validateStep1()">Next</button>
-        </div>
+            <label for="address2">Address Line 2:</label>
+            <input type="text" id="address2" />
 
+            <label for="city">City:</label>
+            <input type="text" id="city" required />
 
-        <div class="form-step" id="step2">
-          <div class="alert">sucessful</div>
-          <h2>Step 2: Contact Information</h2>
+            <label for="state">State:</label>
+            <input type="text" id="state" required />
 
-          <label for="salary">Salary:</label>
-          <input type="text" id="salary" required>
+            <label for="country">Country:</label>
+            <input type="text" id="country" required />
 
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </fieldset>
-  </div>
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" required />
 
-  <script src="script.js"></script>
-  <script>src = "firebase.js"</script>
-</body>
+            <label for="staffId">Staff No/ID:</label>
+            <input type="text" id="staffId" required />
 
+            <label for="department">Department:</label>
+            <input type="text" id="department" required />
+
+            <label for="designation">Designation:</label>
+            <input type="text" id="designation" required />
+
+            <label for="unit">Unit:</label>
+            <input type="text" id="unit" required />
+
+            <button type="button" onclick="validateStep1()">Next</button>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="step2" class="form-step" style="display: none">
+            <label for="paymentInfo">Payment Info:</label>
+            <input type="text" id="paymentInfo" />
+
+            <label for="baseSalary">Base Salary:</label>
+            <input type="number" id="baseSalary" />
+
+            <label for="gross">Gross:</label>
+            <input type="number" id="gross" />
+
+            <label for="net">Net:</label>
+            <input type="number" id="net" />
+
+            <label for="allowance">Allowance:</label>
+            <input type="number" id="allowance" />
+
+            <label for="tax">Tax:</label>
+            <input type="number" id="tax" />
+
+            <label for="pension">Pension:</label>
+            <input type="number" id="pension" />
+
+            <label for="payPeriod">Pay Period:</label>
+            <input type="text" id="payPeriod" />
+
+            <label for="entitlement">Entitlement:</label>
+            <input type="text" id="entitlement" />
+
+            <button type="submit" id="submit">Submit</button>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      src = 'firebase.js';
+    </script>
+  </body>
 </html>
