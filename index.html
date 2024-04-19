@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-step Form</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Employee Payslip Generator</h1>
+  <div class="form-container">
+    <fieldset>
+      <form id="multiStepForm">
+        <div class="form-step active" id="step1" value="step1">
+          <h1>Step 1: Personal Information</h1>
+          <p>Fill the form with the required details</p>
 
-    <form id="payslipForm">
-      <div class="input-container">
-        <label for="employeeName">Employee Name: </label>
-        <input type="text" id="employeeName" required>
-      </div>
-  
-      <div class="input-container">
-        <label for="hoursWorked">Hours Worked: </label>
-        <input type="number" id="hoursWorked" min=0 required>
-      </div>
+          <label for="employeeName">Employees Name:</label>
+          <input required type="text" id="employeeName" required>
 
-      <div class="input-container">
-        <label for="hourlyRate">Hourly Rate (USD): </label>
-        <input type ="number" id = "hourlyRate" min=0 required step=".01">
-      </div>
+          <label for="employeeId">Employees Id:</label>
+          <input type="number" id="employeeId" required>
 
-     <div class ="input-container">
-      	<label for="taxRate">Tax Rate (%):</label>	
-      	<input type = "number" id ="taxRate"  min = 0.00 max = 100.00 required step=".01">
-     </div>
+          <label for="department">Department:</label>
+          <input type="text" id="department" required>
 
-	 	<button type='submit' class='btn'>Generate Payslip</button>
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
 
-
-	  
-		 
-  			
-	  
-
-    </form>
-    <div id='resultSection' class="payslipForm"></div>
+          <button type="next" onclick="validateStep1()">Next</button>
+        </div>
 
 
-<script src='script.js'></script>
+        <div class="form-step" id="step2">
+          <div class="alert">sucessful</div>
+          <h2>Step 2: Contact Information</h2>
 
-  
+          <label for="salary">Salary:</label>
+          <input type="text" id="salary" required>
+
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+
+  <script src="script.js"></script>
+  <script>src = "firebase.js"</script>
 </body>
-
-
 
 </html>
