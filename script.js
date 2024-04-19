@@ -1,101 +1,146 @@
-const database = firebase.database();
-const ref = firebase.database().ref;
+// Initialize Firebase
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
 
-// Define a custom set function for storing data in Firebase
-function customSet(refPath, data) {
-  return new Promise((resolve, reject) => {
-    ref(refPath).set(data, (error) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I",
+  authDomain: "inventory-tracker-251d9.firebaseapp.com",
+  projectId: "inventory-tracker-251d9",
+  storageBucket: "inventory-tracker-251d9.appspot.com",
+  messagingSenderId: "687688694025",
+  appId: "1:687688694025:web:8687bfa31dc57a5177bbd8",
+  measurementId: "G-XLKM7VBSSD"
+};
 
-// Your form submission logic using the custom set function
-function submitForm() {
-  const formData = {
-    firstName: document.getElementById("firstName").value,
-    lastName: document.getElementById("lastName").value,
-    otherName: document.getElementById("otherName").value,
-    email: document.getElementById("email").value,
-    phoneNumber: document.getElementById("phoneNumber").value,
-    address1: document.getElementById("address1").value,
-    address2: document.getElementById("address2").value,
-    city: document.getElementById("city").value,
-    state: document.getElementById("state").value,
-    country: document.getElementById("country").value,
-    gender: document.getElementById("gender").value,
-    staffId: document.getElementById("staffId").value,
-    department: document.getElementById("department").value,
-    designation: document.getElementById("designation").value,
-    unit: document.getElementById("unit").value,
-    paymentInfo: document.getElementById("paymentInfo").value,
-    baseSalary: document.getElementById("baseSalary").value,
-    gross: document.getElementById("gross").value,
-    net: document.getElementById("net").value,
-    allowance: document.getElementById("allowance").value,
-    tax: document.getElementById("tax").value,
-    pension: document.getElementById("pension").value,
-    payPeriod: document.getElementById("payPeriod").value,
-    entitlement: document.getElementById("entitlement").value
-  };
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
 
-  // Store data in Firebase using custom set function
-  customSet('users/' + formData.staffId
-, formData)
-.then(() => {
-alert('Data successfully stored in Firebase!');
-document.getElementById("myForm").reset(); // Reset form after successful submission
-showStep(1); // Show step 1 after submission
-})
-.catch((error) => {
-console.error('Error storing data: ', error);
-alert('Failed to store data. Please try again.');
-});
-}
+const step1 = document.getElementById('step1');
+const step2 = document.getElementById('step2');
 
-// Event listener for form submission
-document.getElementById("submit").addEventListener('click', function(e) {
-e.preventDefault();
-submitForm();
+const nextStep1Button = document.getElementById('nextStep1');
+const prevStep2Button = document.getElementById('prevStep2');
+const submitButton = document.getElementById('submit');
+
+nextStep1Button.addEventListener('click', () => {
+  if (validateStep1()) {
+    step1.style.display = 'none';
+    step2.style.display = 'block';
+  }
 });
 
-// Helper function to show form step
-function showStep(step) {
-document.querySelectorAll('.form-step').forEach((element) => {
-element.style.display = 'none';
+prevStep2Button.addEventListener('click', () => {
+  step2.style.display = 'none';
+  step1.style.display = 'block';
 });
-document.querySelector('#step' + step).style.display = 'block';
-}
 
-// Validate form fields for Step 1
+submitButton.addEventListener('click', async (event) => {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  if (validateStep2()) {
+    const formData = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      email: document.getElementById('email').value,
+      paymentInfo: document.getElementById('paymentInfo').value,
+      baseSalary: parseFloat(document.getElementById('baseSalary').value),
+      gross: parseFloat(document.getElementById('gross').value),
+      net: parseFloat(document.getElementById('net').value),
+      allowance: parseFloat(document.getElementById('allowance').value),
+      tax: parseFloat(document.getElementById('tax').value),
+      pension: parseFloat(document.getElementById('pension').value),
+      payPeriod: document.getElementById('payPeriod').value,
+      entitlement: document.getElementById('entitlement').value,
+    };
+
+    try {
+      await addPayslipToFirestore(formData);
+      console.log('Payslip added successfully!');
+      // Optionally, show success message or redirect
+    } catch (error) {
+      console.error('Error adding payslip:', error);
+      // Handle error (e.g., display error message to user)
+    }
+  }
+});
+
+// Form validation for Step 1
 function validateStep1() {
-const requiredFields = [
-"firstName", "lastName", "email", "phoneNumber", "address1",
-"city", "state", "country", "gender", "staffId", "department",
-"designation", "unit"
-];
+  const requiredFields = [
+    'firstName',
+    'lastName',
+    'email',
+    'phoneNumber',
+    'address1',
+    'city',
+    'state',
+    'country',
+    'gender',
+    'staffId',
+    'department',
+    'designation',
+    'unit',
+  ];
+  for (const field of requiredFields) {
+    const value = document.getElementById(field).value;
+    if (!value) {
+      alert(`Please fill out ${field}`);
+      return false;
+    }
+  }
+  return true;
+}
 
-const isValidStep1 = requiredFields.every(field => {
-const value = document.getElementById(field).value;
-return value.trim() !== '';
-});
+// Form validation for Step 2
+function validateStep2() {
+  const requiredFields = [
+    'paymentInfo',
+    'baseSalary',
+    'gross',
+    'net',
+    'allowance',
+    'tax',
+    'pension',
+    'payPeriod',
+    'entitlement',
+  ];
+  for (const field of requiredFields) {
+    const value = document.getElementById(field).value;
+    if (!value.trim()) {
+      alert(`Please provide ${field}`);
+      return false;
+    }
+  }
 
-if (isValidStep1) {
-nextStep();
-} else {
-alert("Please fill in all the required fields in Step 1 before moving to the next step.");
-}
+  // Additional validation (e.g., numeric fields)
+  const numericFields = [
+    'baseSalary',
+    'gross',
+    'net',
+    'allowance',
+    'tax',
+    'pension',
+  ];
+  for (const field of numericFields) {
+    const value = parseFloat(document.getElementById(field).value);
+    if (isNaN(value) || value <= 0) {
+      alert(`Invalid ${field}. Please enter a valid positive number`);
+      return false;
+    }
+  }
+
+  return true;
 }
 
-// Navigate to the next step
-function nextStep() {
-const currentStep = 1;
-const maxStep = 2;
-if (currentStep < maxStep) {
-showStep(currentStep + 1);
+async function addPayslipToFirestore(formData) {
+  try {
+    const payslipsCollection = collection(db, 'payslip');
+    const docRef = await addDoc(payslipsCollection, formData);
+    console.log('Payslip added successfully with ID:', docRef.id);
+    return docRef;
+  } catch (error) {
+    console.error('Error adding payslip:', error);
+    throw error; // Rethrow the error if needed
+  }
 }
-}
+
