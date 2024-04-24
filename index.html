@@ -4,16 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Multi-step Form</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+     <link rel="stylesheet" href="style.css">
     
   </head>
 
   <body>
     <div class="form-container">
+      
       <fieldset>
         <form id="myForm">
           <!-- Step 1 -->
           <div id="step1" class="form-step">
+            <h1>Employee information</h1>
+            <p>Please fill out this form with the required information</p>
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" required />
 
@@ -65,6 +68,8 @@
 
           <!-- Step 2 -->
           <div id="step2" class="form-step" style="display: none">
+            <h1>Payment information</h1>
+            <p>Please fill out this form with the required information</p>
             <label for="paymentInfo">Payment Info:</label>
             <input type="text" id="paymentInfo" />
 

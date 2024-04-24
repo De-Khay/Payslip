@@ -41,7 +41,19 @@ submitButton.addEventListener('click', async (event) => {
     const formData = {
       firstName: document.getElementById('firstName').value,
       lastName: document.getElementById('lastName').value,
+      otherName: document.getElementById('otherName').value,
       email: document.getElementById('email').value,
+      phoneNumber: document.getElementById('phoneNumber').value,
+      address1: document.getElementById('address1').value,
+      address2: document.getElementById('address2').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      country: document.getElementById('country').value,
+      gender: document.getElementById('gender').value,
+      staffId: document.getElementById('staffId').value,
+      department: document.getElementById('department').value,
+      designation: document.getElementById('designation').value,
+      unit: document.getElementById('unit').value,
       paymentInfo: document.getElementById('paymentInfo').value,
       baseSalary: parseFloat(document.getElementById('baseSalary').value),
       gross: parseFloat(document.getElementById('gross').value),
@@ -142,5 +154,51 @@ async function addPayslipToFirestore(formData) {
     console.error('Error adding payslip:', error);
     throw error; // Rethrow the error if needed
   }
+}
+
+async function populateForm() {
+  const id = document.getElementById('id').value;
+  try {
+      // Get the document corresponding to the ID
+      const docSnap = await getDoc(doc(db, 'payslip', id));
+      if (docSnap.exists()) {
+          const data = docSnap.data();
+          // Populate form fields with retrieved data
+          document.getElementById('firstName').value = data.firstName;
+          document.getElementById('lastName').value = data.lastName;
+          document.getElementById('otherName').value = data.otherName;
+          document.getElementById('email').value = data.email;
+          document.getElementById('phoneNumber').value = data.phoneNumber;
+          document.getElementById('address1').value = data.address1;
+          document.getElementById('address2').value = data.address2;
+          document.getElementById('city').value = data.city;
+          document.getElementById('state').value = data.state;
+          document.getElementById('country').value = data.country;
+          document.getElementById('gender').value = data.gender;
+          document.getElementById('staffId').value = data.staffId;
+          document.getElementById('department').value = data.department;
+          document.getElementById('designation').value = data.designation;
+          document.getElementById('unit').value = data.unit;
+          document.getElementById('paymentInfo').value = data.paymentInfo;
+          document.getElementById('baseSalary').value = data.baseSalary;
+          document.getElementById('gross').value = data.gross;
+          document.getElementById('net').value = data.net;
+          document.getElementById('allowance').value = data.allowance;
+          document.getElementById('tax').value = data.tax;
+          document.getElementById('pension').value = data.pension;
+          document.getElementById('payPeriod').value = data.payPeriod;
+          document.getElementById('entitlement').value = data.entitlement;
+
+          document.getElementById('errorMessage').innerText = ''; // Clear error message if any
+      } 
+      else {
+          console.error('No such document exists!');
+          document.getElementById('errorMessage').innerText = 'No document found with that ID.';
+      }
+  } catch (error) {
+      console.error('Error getting document:', error);
+      document.getElementById('errorMessage').innerText = 'Error getting document. Please try again later.';
+  }
+  console.log(data)
 }
 
