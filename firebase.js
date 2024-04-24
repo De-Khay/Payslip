@@ -1,19 +1,19 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I',
-  authDomain: 'inventory-tracker-251d9.firebaseapp.com',
-  projectId: 'inventory-tracker-251d9',
-  storageBucket: 'inventory-tracker-251d9.appspot.com',
-  messagingSenderId: '687688694025',
-  appId: '1:687688694025:web:3212fc7a4ec0f6af77bbd8',
-  measurementId: 'G-9DGC2CVT6Y',
+  apiKey: "AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I",
+  authDomain: "inventory-tracker-251d9.firebaseapp.com",
+  projectId: "inventory-tracker-251d9",
+  storageBucket: "inventory-tracker-251d9.appspot.com",
+  messagingSenderId: "687688694025",
+  appId: "1:687688694025:web:8687bfa31dc57a5177bbd8",
+  measurementId: "G-XLKM7VBSSD"
 };
 
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
 
-const db = firebase.firestore();
-
-export { db };
+  
+  // Export the Firestore instance
+  export { db };

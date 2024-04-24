@@ -38,3 +38,34 @@ input
   button:hover {
     background-color: #45a049;
   }
+
+  .calculator-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  #staffDetailsContainer {
+    margin-top: 20px;
+  }
+  
+  #staffDetails {
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: #0a0a23;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  #staffDetails ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #staffDetails ul li {
+    margin-bottom: 8px;
+  }
+  

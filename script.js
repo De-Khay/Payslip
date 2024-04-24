@@ -202,3 +202,56 @@ async function populateForm() {
   console.log(data)
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const staffIdInput = document.getElementById('staffIdInput');
+  const baseSalaryInput = document.getElementById('baseSalary');
+  const taxInput = document.getElementById('tax');
+  const pensionInput = document.getElementById('pension');
+  const latenessFeeInput = document.getElementById('latenessFee');
+  const absentFeeInput = document.getElementById('absentFee');
+  const salaryResultElement = document.getElementById('salaryResult');
+
+  if (staffIdInput) {
+      staffIdInput.addEventListener('change', async () => {
+          const staffId = staffIdInput.value;
+
+          try {
+              const docSnap = await getDoc(doc(db, 'payslip', staffId));
+              if (docSnap.exists()) {
+                  const data = docSnap.data();
+                  // Populate form fields with retrieved data
+                  for (const field in data) {
+                      const fieldElement = document.getElementById(field);
+                      if (fieldElement) {
+                          fieldElement.value = data[field];
+                      }
+                  }
+              } else {
+                  console.error('No such document exists!');
+                  // Optionally, display a message indicating staff details are not found
+              }
+          } catch (error) {
+              console.error('Error getting document:', error);
+              // Handle error (e.g., display an error message)
+          }
+      });
+  }
+
+  if (baseSalaryInput && taxInput && pensionInput && latenessFeeInput && absentFeeInput && salaryResultElement) {
+      function calculateSalary() {
+          const baseSalary = parseFloat(baseSalaryInput.value) || 0;
+          const tax = parseFloat(taxInput.value) || 0.075; // Tax rate as 7.5%
+          const pension = parseFloat(pensionInput.value) || 0.075; // Pension rate as 7.5%
+          const latenessFee = parseFloat(latenessFeeInput.value) || 0;
+          const absentFee = parseFloat(absentFeeInput.value) || 0;
+
+          // Calculate net salary
+          const netSalary = baseSalary * (1 - tax - pension) - latenessFee - absentFee;
+
+          // Display the calculated net salary
+          salaryResultElement.innerText = `Net Salary: $${netSalary.toFixed(2)}`;
+      }
+  } else {
+      console.error('One or more input elements not found.');
+  }
+});
