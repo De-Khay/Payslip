@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+input[type="text"], input[type="number"], button {
+    margin-bottom: 10px;
+}
+
+.calculator {
+    margin-top: 20px;
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+
+#payslipDetails, .calculator {
+    display: none;
+}

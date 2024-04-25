@@ -1,39 +1,48 @@
 body {
-   background: #000;; 
-   font-family: Arial, sans-serif;
- }
- 
- h1 {
-    text-align: center;
-    color: antiquewhite;
- }
- 
- .input-container {
-   display: block;
-   margin: 50px auto;
-   width: fit-content;
-   border: 1px solid #9b8641fa;
-   padding: 14px 50px;
-   border-radius: 6px;
- }
- 
- label {
-    width:150px;
-    display:inline-block;
-    color: antiquewhite;
-    
- }
- 
- input[type=text], input[type=number] {
-    padding:5px;
- }
- .btn{
-   display: block;
-   margin: 50px auto;
-   width: fit-content;
-   border: 1px solid #9b8641fa;
-   padding: 14px 50px;
-   border-radius: 6px;
-   color:#9b8641fa;
+   width: 65%;
+   height: 100vh;
+   margin: auto;
+   background-color:rgb(255, 255, 255);
+   color: #000000;
+   font-family: Tahoma;
+   font-size: 16px;
 }
- 
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style for table headers */
+th {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0) ;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style for table data cells */
+td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+
+/* Style for details and edit buttons */
+button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+/* Style for details button */
+.details-button {
+  background-color: #800020;
+}
+
+
+/* Style for button icons */
+button i {
+  margin-right: 5px;
+}
