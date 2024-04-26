@@ -67,19 +67,19 @@ document.addEventListener('DOMContentLoaded', async () => {
           // Redirect to details.html with staffId as a query parameter
           window.location.href = `details.html?staffId=${staffId}`;
         });
-        
-         // Add "Edit" button with Font Awesome icon
-         const editCell = row.insertCell();
-         const editButton = document.createElement('button');
-         editButton.innerHTML = '<i class="fas fa-edit"></i>'; // Font Awesome edit icon
-         editButton.classList.add('edit-button');
-         editButton.addEventListener('click', () => {
-           // Add your logic to edit (e.g., open an edit form)
-           console.log('Edit button clicked for staff ID:', payslipData.staffId);
-         });
-         editCell.appendChild(editButton);
-       });
-       
+          
+        // Add "Edit" button with Font Awesome icon
+        const editCell = row.insertCell();
+        const editButton = document.createElement('button');
+        editButton.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'; // Font Awesome edit icon
+        editButton.classList.add('edit-button');
+        editButton.addEventListener('click', () => {
+          // Redirect to salary.html
+          window.location.href = 'salary.html';
+        });
+        editCell.appendChild(editButton);
+      });
+      
       // Append table to the staff details element
       staffDetailsElement.appendChild(table);
     } else {

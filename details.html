@@ -7,15 +7,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="staffDetailsContainer">
-      <div id="staffDetails">
-        <!-- Staff details will be displayed here -->
+  <div class="container">
+      <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <img src="btlogo.jpg" alt="BT logo">
+        <h2>BT HR SOFTWARE</h2>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="records.html">RECORDS</a></li>
+          <li><a href="salary.html">SALARY</a></li>
+          <!-- Add more sidebar items as needed -->
+        </ul>
       </div>
-    </div>  
+      <div class="contents">
+        <div class="content">
+          <h2>employee details</h2>
+          <div id="staffDetailsContainer">
+            <div id="staffDetails">
+              <!-- Staff details will be displayed here -->
+            </div>
+        </div>  
+        </div>
+     </div>
+  </div>
     <!-- Load Firebase scripts and custom JavaScript -->
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
     <script src="details.js" type="module"></script>
-  </div>
 </body>
 </html>

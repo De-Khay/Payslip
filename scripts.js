@@ -8,54 +8,20 @@ import {
   getDocs,
 } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
 
+
 const firebaseConfig = {
-<<<<<<< HEAD
-    apiKey: "AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I",
-    authDomain: "inventory-tracker-251d9.firebaseapp.com",
-    projectId: "inventory-tracker-251d9",
-    storageBucket: "inventory-tracker-251d9.appspot.com",
-    messagingSenderId: "687688694025",
-    appId: "1:687688694025:web:8687bfa31dc57a5177bbd8",
-    measurementId: "G-XLKM7VBSSD"
-=======
-  apiKey: 'AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I',
-  authDomain: 'inventory-tracker-251d9.firebaseapp.com',
-  projectId: 'inventory-tracker-251d9',
-  storageBucket: 'inventory-tracker-251d9.appspot.com',
-  messagingSenderId: '687688694025',
-  appId: '1:687688694025:web:8687bfa31dc57a5177bbd8',
-  measurementId: 'G-XLKM7VBSSD',
->>>>>>> 920fff1845d817f4478510344f897c29e35222ab
+    apiKey: 'AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I',
+    authDomain: 'inventory-tracker-251d9.firebaseapp.com',
+    projectId: 'inventory-tracker-251d9',
+    storageBucket: 'inventory-tracker-251d9.appspot.com',
+    messagingSenderId: '687688694025',
+    appId: '1:687688694025:web:8687bfa31dc57a5177bbd8',
+    measurementId: 'G-XLKM7VBSSD',
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
 
-<<<<<<< HEAD
-async function populatePage() {
-    const staffId = document.getElementById('staffId').value;
-    try {
-        const docRef = await db.collection('payslip').doc(staffId).get();
-        if (docRef.exists) {
-            const data = docRef.data();
-            // Populate the page with the retrieved data
-            const formDataDiv = document.getElementById('formData');
-            formDataDiv.innerHTML = ''; // Clear previous data
-            Object.keys(data).forEach(key => {
-                const p = document.createElement('p');
-                p.textContent = `${key}: ${data[key]}`;
-                formDataDiv.appendChild(p);
-            });
-            document.getElementById('errorMessage').innerText = ''; // Clear error message if any
-        } else {
-            document.getElementById('errorMessage').innerText = 'No document found with that Staff ID.';
-        }
-    } catch (error) {
-        console.error('Error retrieving document:', error);
-        document.getElementById('errorMessage').innerText = 'Error retrieving document. Please try again later.';
-    }
-}
-=======
 document.addEventListener('DOMContentLoaded', async () => {
   const staffIdInput = document.getElementById('staffIdInput');
   const baseSalaryInput = document.getElementById('baseSalary');
@@ -186,4 +152,4 @@ if (calculateButton) {
 }
 
 });
->>>>>>> 920fff1845d817f4478510344f897c29e35222ab
+

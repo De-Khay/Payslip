@@ -4,42 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salary Calculator</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="salary.css">
 </head>
 <body>
-  <div class="calculator-container">
-    <h1>Salary Calculator</h1>
+  <div class="container">
+        <div class="sidebar">
+          <!-- Sidebar content goes here -->
+          <img src="btlogo.jpg" alt="BT Logo">
+          <h2>BT HR SOFTWARE</h2>
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="records.html">RECORDS</a></li>
+            <li><a href="salary.html">SALARY</a></li>
+            <!-- Add more sidebar items as needed -->
+          </ul>
+        </div>
+    <div class="content">
+        <div class="calculator-container">
+          <h1>Salary Calculator</h1>
 
-    <label for="staffIdInput">Staff ID:</label>
-    <input type="text" id="staffIdInput">
-    <button id="fetchDetailsButton">Fetch Details</button>
+          <label for="staffIdInput">Staff ID:</label>
+          <input type="text" id="staffIdInput">
+          <button id="fetchDetailsButton">Fetch Details</button>
 
-    <div id="staffDetailsContainer">
-      <div id="staffDetails">
-        <!-- Staff details will be displayed here -->
-      </div>
+          <div id="staffDetailsContainer">
+            <div id="staffDetails">
+              <!-- Staff details will be displayed here -->
+            </div>
+          </div>
+
+          <label for="baseSalary">Base Salary:</label>
+          <input type="number" id="baseSalary">
+
+          <label for="tax">Tax Rate (7.5%):</label>
+          <input type="number" id="tax">
+
+          <label for="pension">Pension Rate (7.5%):</label>
+          <input type="number" id="pension">
+
+          <label for="latenessFee">Lateness Fee:</label>
+          <input type="number" id="latenessFee">
+
+          <label for="absentFee">Absence Fee:</label>
+          <input type="number" id="absentFee">
+
+          <button id="calculateButton">Calculate Net Salary</button>
+
+          <div id="netSalaryResult">
+            <!-- Net salary calculation result will be displayed here -->
+          </div>
     </div>
-
-    <label for="baseSalary">Base Salary:</label>
-    <input type="number" id="baseSalary">
-
-    <label for="tax">Tax Rate (7.5%):</label>
-    <input type="number" id="tax">
-
-    <label for="pension">Pension Rate (7.5%):</label>
-    <input type="number" id="pension">
-
-    <label for="latenessFee">Lateness Fee:</label>
-    <input type="number" id="latenessFee">
-
-    <label for="absentFee">Absence Fee:</label>
-    <input type="number" id="absentFee">
-
-    <button id="calculateButton">Calculate Net Salary</button>
-
-    <div id="netSalaryResult">
-      <!-- Net salary calculation result will be displayed here -->
-    </div>
+  </div>
 
     <!-- Load Firebase scripts and custom JavaScript -->
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>

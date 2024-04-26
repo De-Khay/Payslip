@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firestore Data Display with Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-ZudLjk2DTcx5e56jH60IzkrjOra25itT6lD1BdgiJ4vgr+/EoA6D0kzWVQb31Yy9zTAvNDypOvUKusq8TKwsqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+ <div class="container">
+    <div class="sidebar">
+      <!-- Sidebar content goes here -->
+      <img src="btlogo.jpg" alt="BT  Logo">
+      <h2>BT HR SOFTWARE</h2>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="records.html">RECORDS</a></li>
+        <li><a href="salary.html">SALARY</a></li>
+        <!-- Add more sidebar items as needed -->
+      </ul>
+
+    </div>
+    <div class="contents"></div>
+       <div class="content">
+          <h2>Firestore Data Display with Search</h2>
+          
+          <div id="formContainer"></div>
+          <input type="text" id="staffIdInput" placeholder="Search...">
+          <button id="fetchDetailsButton">Search</button>
+
+          <div id="staffDetailsContainer">
+            <div id="staffDetails">
+              <!-- Staff details will be displayed here -->
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+    
+    <!-- Include Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
+    <script src="records.js" type="module"></script>
+</body>
+</html>
