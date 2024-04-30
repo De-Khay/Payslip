@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-step Form</title>
+     <link rel="stylesheet" href="../css/style.css">
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <img src="../img/btlogo.jpg" alt="BT Logo">
+        <h2>BT HR SOFTWARE</h2>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="records.html">RECORDS</a></li>
+          <li><a href="salary.html">SALARY</a></li>
+          <!-- Add more sidebar items as needed -->
+        </ul>
+      </div>
+      
+      <div class="form-container">
+        
+        <fieldset>
+          <form id="myForm">
+            <!-- Step 1 -->
+            <div id="step1" class="form-step">
+              <h1>Employee information</h1>
+              <h3>Please fill out this form with the required information</h3>
+              
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" required />
+
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" required />
+
+              <label for="otherName">Other Name:</label>
+              <input type="text" id="otherName" />
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" required />
+
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="tel" id="phoneNumber" required />
+
+              <label for="address1">Address Line 1:</label>
+              <input type="text" id="address1" required />
+
+              <label for="address2">Address Line 2:</label>
+              <input type="text" id="address2" />
+
+              <label for="city">City:</label>
+              <input type="text" id="city" required />
+
+              <label for="state">State:</label>
+              <input type="text" id="state" required />
+
+              <label for="country">Country:</label>
+              <input type="text" id="country" required />
+
+              <label for="gender">Gender:</label>
+              <input type="text" id="gender" required />
+
+              <label for="staffId">Staff No/ID:</label>
+              <input type="text" id="staffId" required />
+
+              <label for="department">Department:</label>
+              <input type="text" id="department" required />
+
+              <label for="designation">Designation:</label>
+              <input type="text" id="designation" required />
+
+              <label for="unit">Unit:</label>
+              <input type="text" id="unit" required />
+                <!-- Input fields for Step 1 -->
+                <button type="button" id="nextStep1">Next</button>
+
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="form-step" style="display: none">
+              <h1>Payment information</h1>
+              <p>Please fill out this form with the required information</p>
+              <label for="paymentInfo">Payment Info:</label>
+              <input type="text" id="paymentInfo" />
+
+              <label for="baseSalary">Base Salary:</label>
+              <input type="number" id="baseSalary" />
+
+              <label for="gross">Gross:</label>
+              <input type="number" id="gross" />
+
+              <label for="net">Net:</label>
+              <input type="number" id="net" />
+
+              <label for="allowance">Allowance:</label>
+              <input type="number" id="allowance" />
+
+              <label for="tax">Tax:</label>
+              <input type="number" id="tax" />
+
+              <label for="pension">Pension:</label>
+              <input type="number" id="pension" />
+
+              <label for="payPeriod">Pay Period:</label>
+              <input type="text" id="payPeriod" />
+
+              <label for="entitlement">Entitlement:</label>
+              <input type="text" id="entitlement" />
+              <button type="button" id="prevStep2">Previous</button>
+              <button type="submit" id="submit">Submit</button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+    <!-- Load script.js as a module -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js" type="module"></script>
+    <!-- <script src="firebase.js" type="module"></script> -->
+
+    <script src="../js/script.js" type="module"></script>
+  </body>
+</html>

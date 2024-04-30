@@ -1,0 +1,110 @@
+body {
+   width: 100%;
+   height: 100vh;
+   margin: auto;
+   background-color:#F0F0F0;
+   color: #000000;
+   font-family: Tahoma;
+   font-size: 16px;
+}
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px; 
+  background-color: #26262f;
+  color: white;;
+  padding-top: 20px;
+  position: fixed; /* Set the sidebar position to fixed */
+  top: 0; /* Align the sidebar to the top of the viewport */
+  bottom: 0; /* Extend the sidebar to the bottom of the viewport */
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+img {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+padding-left: 75px;
+}
+
+.sidebar a {
+  display: block; /* Make the links behave as block elements */
+  color: white; /* Text color */
+  text-decoration: none; /* Remove default underline */
+  font-size: 15px;
+  padding: 10px 0 10px 30px ; /* Add padding */
+}
+
+
+.sidebar a:hover {
+  width: auto;
+  background-color: #ddd; /* Background color on hover */
+  color: black; /* Text color on hover */
+}
+
+h1{
+  font-size: 40px;
+ 
+  text-align: center;
+}
+h2{
+  
+  font-size: 25px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+h3{
+  font-size: 20px;
+  text-align: center;
+  text-decoration: solid;
+}
+.contents{
+  padding-left: 250px;
+}
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style for table headers */
+th {
+  background-color: #F0F0F0;
+  border: 1px solid rgb(0, 0, 0) ;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style for table data cells */
+td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+
+/* Style for details and edit buttons */
+button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+/* Style for details button */
+.details-button {
+  background-color: #03295A; 
+  color: whitesmoke;
+}
+
+
+/* Style for button icons */
+button i {
+  margin-right: 5px;
+}
+

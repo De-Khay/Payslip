@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+      <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        <img src="../img/btlogo.jpg" alt="BT logo">
+        <h2>BT HR SOFTWARE</h2>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="records.html">RECORDS</a></li>
+          <li><a href="salary.html">SALARY</a></li>
+          <!-- Add more sidebar items as needed -->
+        </ul>
+      </div>
+      <div class="contents">
+        <div class="content">
+          <h2>Employee Details</h2>
+          <div id="staffDetailsContainer">
+            <div id="staffDetails">
+                <table id="table1" class="staff-details"></table>
+                <table id="table2" class="staff-details"></table>
+            </div>
+          </div>  
+        </div>
+     </div>
+  </div>
+    <!-- Load Firebase scripts and custom JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
+    <script src="../js/details.js" type="module"></script>
+</body>
+</html>
