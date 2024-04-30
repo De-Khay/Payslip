@@ -23,6 +23,16 @@ const db = getFirestore(firebaseApp);
 
 document.addEventListener('DOMContentLoaded', async () => {
     const staffDetailsElement = document.getElementById('staffDetails');
+    const containerDiv = document.createElement('div'); // Container div to hold both tables
+    containerDiv.classList.add('table-container'); // Add a class for styling
+
+    // Create table 1
+    const table1 = document.createElement('table');
+    table1.classList.add('staff-details'); // Add a class for styling
+
+    // Create table 2
+    const table2 = document.createElement('table');
+    table2.classList.add('staff-details'); // Add a class for styling
 
     // Get the staffId from the URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -38,14 +48,70 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (matchingDoc) {
                 staffDetailsElement.innerHTML = ''; // Clear previous details
                 const payslipData = matchingDoc.data();
-                const staffDetails = document.createElement('div');
-                staffDetails.classList.add('staff-details');
-                Object.keys(payslipData).forEach(key => {
-                    const fieldElement = document.createElement('p');
-                    fieldElement.innerHTML = `<strong>${key}:</strong> ${payslipData[key]}`;
-                    staffDetails.appendChild(fieldElement);
-                });
-                staffDetailsElement.appendChild(staffDetails);
+                
+                function populateTable(table, payslipData, fields) {
+                    fields.forEach(field => {
+                        const row = document.createElement('tr');
+                        const keyCell = document.createElement('td');
+                        keyCell.textContent = field === 'Employee Name' ? field : field.replace(/([A-Z])/g, ' $1').trim(); // Add spaces before capital letters
+                        const valueCell = document.createElement('td');
+                
+                        if (field === 'Employee Name') {
+                            // Concatenate firstName, lastName, and otherName for employee name
+                            valueCell.textContent = `${payslipData.lastName} ${payslipData.firstName} ${payslipData.otherName}`;
+                        } else if (field === 'Employee Address') {
+                            // Concatenate address fields
+                            const address = `${payslipData.address1}, ${payslipData.address2}, ${payslipData.city}, ${payslipData.state}, ${payslipData.country}`;
+                            valueCell.textContent = address;
+                        } else {
+                            valueCell.textContent = payslipData[field] || ''; // If field value is empty, display an empty string
+                        }
+                
+                        row.appendChild(keyCell);
+                        row.appendChild(valueCell);
+                        table.appendChild(row);
+                    });
+                }
+                
+
+                // Define fields for table 1
+                const fieldsTable1 = [
+                    'Employee Name',
+                    'phoneNumber',
+                    'email',
+                    'Employee Address',
+                    'gender',
+                    'staffId',
+                    'department',
+                    'designation',
+                    'unit'
+                ];
+
+                // Define fields for table 2
+                const fieldsTable2 = [
+                    'paymentInfo',
+                    'baseSalary',
+                    'gross',
+                    'net',
+                    'allowance',
+                    'tax',
+                    'pension',
+                    'payPeriod',
+                    'entitlement'
+                ];
+
+                // Populate table 1
+                populateTable(table1, payslipData, fieldsTable1);
+
+                // Populate table 2
+                populateTable(table2, payslipData, fieldsTable2);
+
+                // Append tables to the container div
+                containerDiv.appendChild(table1);
+                containerDiv.appendChild(table2);
+
+                // Append container div to the staffDetailsElement
+                staffDetailsElement.appendChild(containerDiv);
             } else {
                 staffDetailsElement.innerHTML = '<p>No matching payslip found.</p>';
                 console.error('No matching payslip found.');
@@ -61,3 +127,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         staffDetailsElement.innerHTML = `<p>Error fetching payslips: ${error.message}</p>`;
     }
 });
+
+function populateTable(table, payslipData, fields) {
+    fields.forEach(field => {
+        const row = document.createElement('tr');
+        const keyCell = document.createElement('td');
+        keyCell.textContent = field;
+        const valueCell = document.createElement('td');
+        valueCell.textContent = payslipData[field] || ''; // If field value is empty, display an empty string
+        row.appendChild(keyCell);
+        row.appendChild(valueCell);
+        table.appendChild(row);
+    });
+}

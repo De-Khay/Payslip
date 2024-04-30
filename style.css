@@ -28,12 +28,11 @@ body {
 
 .content {
   flex: 1;
-  padding: 20px;
 }
  img {
   width: 100px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
-padding-left: 75px;
+  padding-left: 75px;
 }
 
 
@@ -41,7 +40,7 @@ padding-left: 75px;
   display: block; /* Make the links behave as block elements */
   color: white; /* Text color */
   text-decoration: none; /* Remove default underline */
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px 0 10px 30px ; /* Add padding */
 }
 
@@ -51,6 +50,11 @@ padding-left: 75px;
   background-color: #ddd; /* Background color on hover */
   color: black; /* Text color on hover */
 }
+
+.sidebar ul {
+  list-style: none;
+}
+
 
 fieldset{
   color: #404040;
@@ -92,6 +96,38 @@ input
   font-size: 20px;
 }
   
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style for table headers */
+th {
+  background-color: #F0F0F0;
+  border: 1px solid rgb(0, 0, 0) ;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style for table data cells */
+td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.staff-details {
+    margin-right: 20px; /* Add some margin between the tables */
+}
+
+
   button {
     margin-top: 20px;
     padding: 10px 20px;
