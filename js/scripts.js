@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const taxInput = document.getElementById('tax');
   const pensionInput = document.getElementById('pension');
   const staffDetailsElement = document.getElementById('staffDetails');
-
+  
   // Function to calculate tax amount
   function calculateTax(baseSalary) {
     return baseSalary * 0.075; // Tax rate as 7.5%
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Function to calculate pension amount
   function calculatePension(baseSalary) {
-    return baseSalary * 0.075; // Pension rate as 7.5%
+    return baseSalary * 0.08; // Pension rate as 8%
   }
 
   // Event listener to update tax and pension amounts when baseSalary changes
@@ -48,88 +48,86 @@ document.addEventListener('DOMContentLoaded', async () => {
     pensionInput.value = pensionAmount.toFixed(2); // Display pension amount in the pension input field
   });
 
-  document
-    .getElementById('fetchDetailsButton')
-    .addEventListener('click', async () => {
-      const staffId = staffIdInput.value.trim();
+  document.getElementById('fetchDetailsButton').addEventListener('click', async () => {
+    const staffId = staffIdInput.value.trim();
 
-      try {
-        // Query the payslip collection where 'staffId' field matches the input staffId
-        const payslipQuery = query(
-          collection(db, 'payslip'),
-          where('staffId', '==', staffId)
-        );
-        const querySnapshot = await getDocs(payslipQuery);
+    try {
+      // Query the payslip collection where 'staffId' field matches the input staffId
+      const payslipQuery = query(
+        collection(db, 'payslip'),
+        where('staffId', '==', staffId)
+      );
+      const querySnapshot = await getDocs(payslipQuery);
 
-        if (!querySnapshot.empty) {
-          const payslipData = querySnapshot.docs[0].data(); // Assuming only one document is found
+      if (!querySnapshot.empty) {
+        const payslipData = querySnapshot.docs[0].data(); // Assuming only one document is found
 
-          // Populate baseSalary input field with the retrieved value
-          baseSalaryInput.value = payslipData.baseSalary || 0;
+        // Create a container for the fetched details
+        const fetchedDetailsContainer = document.createElement('div');
+        fetchedDetailsContainer.classList.add('fetched-details-container');
+        fetchedDetailsContainer.style.border = '2px solid black'; // Add border
 
-          // Calculate and display tax and pension amounts
-          const taxAmount = calculateTax(payslipData.baseSalary);
-          const pensionAmount = calculatePension(payslipData.baseSalary);
-          taxInput.value = taxAmount.toFixed(2);
-          pensionInput.value = pensionAmount.toFixed(2);
+        // Clear previous staff details
+        staffDetailsElement.innerHTML = '';
 
-          // Clear previous staff details
-          staffDetailsElement.innerHTML = '';
+        // Display specific payslip details
+        const detailsList = document.createElement('ul');
+        const fieldsToShow = [
+          'staffId',
+          'firstName',
+          'lastName',
+          'otherName',
+          'email',
+          'phoneNumber',
+          'department',
+          'baseSalary',
+        ];
 
-          // Display specific payslip details
-          const detailsList = document.createElement('ul');
-          const fieldsToShow = [
-            'staffId',
-            'firstName',
-            'lastName',
-            'otherName',
-            'email',
-            'phoneNumber',
-            'department',
-            'baseSalary',
-          ];
+        fieldsToShow.forEach((field) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${field}: ${payslipData[field]}`;
+          detailsList.appendChild(listItem);
+        });
 
-          fieldsToShow.forEach((field) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${field}: ${payslipData[field]}`;
-            detailsList.appendChild(listItem);
-          });
-
-          staffDetailsElement.appendChild(detailsList);
-        } else {
-          // Display error message when no payslip is found
-          staffDetailsElement.innerHTML = `<p>No payslip found for Staff ID: ${staffId}</p>`;
-          console.error('No payslip found for the provided Staff ID.');
-        }
-      } catch (error) {
-        console.error('Error fetching payslip:', error);
-        // Handle error (e.g., display an error message)
-        staffDetailsElement.innerHTML = `<p>Error fetching payslip: ${error.message}</p>`;
+        fetchedDetailsContainer.appendChild(detailsList);
+        staffDetailsElement.appendChild(fetchedDetailsContainer);
+      } else {
+        // Display error message when no payslip is found
+        staffDetailsElement.innerHTML = `<p>No payslip found for Staff ID: ${staffId}</p>`;
+        console.error('No payslip found for the provided Staff ID.');
       }
-    });
+    } catch (error) {
+      console.error('Error fetching payslip:', error);
+      // Handle error (e.g., display an error message)
+      staffDetailsElement.innerHTML = `<p>Error fetching payslip: ${error.message}</p>`;
+    }
+  });
 
-    
-// Function to format currency with commas for thousands separation
-function formatCurrency(amount) {
+  // Function to format currency with commas for thousands separation
+  function formatCurrency(amount) {
     return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+  }
 
-function calculateNetSalary() {
+  function calculateNetSalary() {
     const baseSalary = parseFloat(baseSalaryInput.value) || 0;
     const taxRate = 0.075; // Tax rate as 7.5%
     const pensionRate = 0.075; // Pension rate as 7.5%
     const latenessFee = parseFloat(document.getElementById('latenessFee').value) || 0;
     const absentFee = parseFloat(document.getElementById('absentFee').value) || 0;
+    const salaryAdvance = parseFloat(document.getElementById('salaryAdvance').value) || 0;
+    const loan = parseFloat(document.getElementById('loan').value) || 0;
+    const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
+    const otherAllowances = parseFloat(document.getElementById('otherAllowances').value) || 0;
 
     // Calculate tax and pension deductions
     const taxAmount = baseSalary * taxRate;
     const pensionAmount = baseSalary * pensionRate;
 
     // Calculate total deductions
-    const totalDeductions = taxAmount + pensionAmount + latenessFee + absentFee;
+    const totalDeductions = taxAmount + pensionAmount + latenessFee + absentFee + salaryAdvance + loan + otherDeductions;
 
     // Calculate net salary after deductions
-    let netSalary = baseSalary - totalDeductions;
+    let netSalary = baseSalary + otherAllowances - totalDeductions;
 
     // Ensure net salary is not negative
     netSalary = netSalary < 0 ? 0 : netSalary;
@@ -142,14 +140,11 @@ function calculateNetSalary() {
     if (netSalaryResultElement) {
         netSalaryResultElement.textContent = `Net Salary: ₦${formattedNetSalary}`;
     }
-}
+  }
 
-
-// Call the calculateNetSalary function when the Calculate Net Salary button is clicked
-const calculateButton = document.getElementById('calculateButton');
-if (calculateButton) {
-    calculateButton.addEventListener('click', calculateNetSalary);
-}
-
+  // Call the calculateNetSalary function when the Calculate Net Salary button is clicked
+  const calculateButton = document.getElementById('calculateButton');
+  if (calculateButton) {
+      calculateButton.addEventListener('click', calculateNetSalary);
+  }
 });
-
