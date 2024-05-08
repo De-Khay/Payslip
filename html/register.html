@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/css/materials.css">
+</head>
+<body>
+    <h1>Registration</h1>
+
+    <div class="container">
+        <form id="registrationForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <label for="section">Select Section:</label>
+            <select id="section" required>
+                <option value="" disabled selected>Select User Type</option>
+                <option id="inventory" value="inventory">Materials</option>
+                <option id="employee" value="employee">Payslip</option>
+            </select>
+           <button type="submit">Register</button>
+        </form>
+         
+        <p>Already have an account? <a href="login.html" id="loginLink"><button lass="btn btn-primary">Login</button></a></p>
+    </div>
+
+    <script src="/js/loginauth.js" type="module"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js" type="module"></script>
+</body>
+</html>
