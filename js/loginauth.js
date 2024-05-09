@@ -1,57 +1,50 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
+import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
+
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I",
-  authDomain: "inventory-tracker-251d9.firebaseapp.com",
-  projectId: "inventory-tracker-251d9",
-  storageBucket: "inventory-tracker-251d9.appspot.com",
-  messagingSenderId: "687688694025",
-  appId: "1:687688694025:web:8687bfa31dc57a5177bbd8",
-  measurementId: "G-XLKM7VBSSD"
+  apiKey: 'AIzaSyAWwVoSru9MDFsxgZvR9jCAPmha9dkwn7I',
+  authDomain: 'inventory-tracker-251d9.firebaseapp.com',
+  projectId: 'inventory-tracker-251d9',
+  storageBucket: 'inventory-tracker-251d9.appspot.com',
+  messagingSenderId: '687688694025',
+  appId: '1:687688694025:web:8687bfa31dc57a5177bbd8',
+  measurementId: 'G-XLKM7VBSSD',
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// Firebase firestore
-const db = firebase.firestore();
+const loginForm = document.getElementById('loginForm');
 
-// Function to handle user registration
-function registerUser(_email, _password, _section) {
-    const registrationForm = document.getElementById('registrationForm');
-    registrationForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const selectedSection = document.getElementById('section').value;
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // User registered successfully
-                console.log("User registered:", userCredential.user);
-                 // Alert to confirm successful registration
-                 window.alert("Registration successful! Your credentials have been stored.");
+  const email = document.getElementById('username').value; // Assuming 'username' input holds the email
+  const password = document.getElementById('password').value;
 
-                // Store user data in Firestore
-                db.collection('users').doc(userCredential.user.uid).set({
-                    email: email,
-                    section: selectedSection // Use the selectedSection value
-                })
-                .then(() => {
-                    console.log("User data stored in Firestore");
-                    // Redirect to corresponding section
-                    if (selectedSection === 'inventory') {
-                        window.location.href = "materials.html";
-                    } else if (selectedSection === 'employee') {
-                        window.location.href = "home.html";
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error storing user data:", error);
-                });
-            })
-            .catch((error) => {
-                console.error("Error registering user:", error.message);
-                // Handle registration error, e.g., display error message to the user
-            });
-    });
-}
+  try {
+    // Query Firestore to find a matching user
+    const usersRef = collection(db, 'Authentication');
+    const q = query(usersRef, where('email', '==', email), where('password', '==', password));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      // User not found or invalid credentials
+      throw new Error('Invalid email or password');
+    } else {
+      // Authentication successful, proceed to redirect based on department
+      const userDoc = querySnapshot.docs[0]; // Assuming only one user matches the credentials
+      const department = userDoc.get('department');
+
+      if (department === 'hr') {
+        window.location.href = 'home.html';
+      } else if (department === 'store') {
+        window.location.href = 'materials_dashboard.html';
+      }
+    }
+  } catch (error) {
+    console.error('Login Error:', error.message);
+    alert('Invalid email or password. Please try again.');
+  }
+});
