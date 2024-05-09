@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Add "Details" button
         const detailsCell = row.insertCell();
         const detailsButton = document.createElement('button');
-        detailsButton.innerHTML = '<i class="fas fa-info-circle"></i> Details';
+        detailsButton.innerHTML = '<i class="fas fa-in fo-circle"></i> Details';
         detailsButton.classList.add('details-button');
         detailsButton.setAttribute('data-staff-id', payslipData.staffId); // Set staff ID as custom attribute
         detailsCell.appendChild(detailsButton);

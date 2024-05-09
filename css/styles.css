@@ -106,5 +106,11 @@ button {
 /* Style for button icons */
 button i {
   margin-right: 5px;
+  
 }
+
+i{
+  color: #03295A;
+}
+
 
