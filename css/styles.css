@@ -15,7 +15,7 @@ body {
    width: 100%;
    height: 100vh;
    margin: auto;
-   background-color:#fffdfd;
+   background-color:#ffffff;
    font-family: Tahoma;
    font-size: 16px;
 }
@@ -25,12 +25,13 @@ body {
 
 .sidebar {
   width: 250px; 
-  background-color: #26262f;
-  color: white;;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);;
   padding-top: 20px;
   position: fixed; /* Set the sidebar position to fixed */
   top: 0; /* Align the sidebar to the top of the viewport */
   bottom: 0; /* Extend the sidebar to the bottom of the viewport */
+  border-right: 3px solid #000000;
 }
 
 .content {
@@ -39,17 +40,19 @@ body {
 }
 
 img {
-  width: 100px; /* Adjust the width as needed */
+  width: 150px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
-padding-left: 75px;
+  padding-top: 10px;
+  padding-left: 0px;
 }
+
 
 .sidebar a {
   display: block; /* Make the links behave as block elements */
-  color: white; /* Text color */
+  color: rgb(0, 0, 0); /* Text color */
   text-decoration: none; /* Remove default underline */
-  font-size: 15px;
-  padding: 10px 0 10px 30px ; /* Add padding */
+  font-size: 20px;
+  padding:10px 0 10px 0; /* Add padding */
 }
 
 
@@ -58,6 +61,12 @@ padding-left: 75px;
   background-color: #ddd; /* Background color on hover */
   color: black; /* Text color on hover */
 }
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 
 h1{
   font-size: 40px;
@@ -80,7 +89,7 @@ h3{
 }
 
 table {
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -169,4 +178,11 @@ i{
 
 #fetchDetailsButton:hover {
   background-color: #0056b3;
+}
+
+i{
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #3d1c35;
 }

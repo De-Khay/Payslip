@@ -2,7 +2,7 @@ body {
   width: 100%;
   height: 100vh;
   margin: auto;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   color: #000000;
   font-family: Tahoma;
   font-size: 16px;
@@ -13,12 +13,13 @@ body {
 
 .sidebar {
   width: 250px; 
-  background-color: #26262f;
-  color: white;;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);;
   padding-top: 20px;
   position: fixed; /* Set the sidebar position to fixed */
   top: 0; /* Align the sidebar to the top of the viewport */
   bottom: 0; /* Extend the sidebar to the bottom of the viewport */
+  border-right: 3px solid #000000;
 }
 
 .form-container {
@@ -30,18 +31,19 @@ body {
   flex: 1;
 }
  img {
-  width: 100px; /* Adjust the width as needed */
+  width: 150px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
-  padding-left: 75px;
+  padding-left: 0px;
+  padding-top: 10px;
 }
 
 
 .sidebar a {
   display: block; /* Make the links behave as block elements */
-  color: white; /* Text color */
+  color: rgb(0, 0, 0); /* Text color */
   text-decoration: none; /* Remove default underline */
   font-size: 20px;
-  padding: 10px 0 10px 30px ; /* Add padding */
+  padding:10px 0 10px 0; /* Add padding */
 }
 
 
@@ -53,6 +55,7 @@ body {
 
 .sidebar ul {
   list-style: none;
+  padding-left: 0;
 }
 
 
@@ -99,9 +102,17 @@ input
 
 /* Style for the table */
 table {
-  width: 100%;
+  width: 420px;
   border-collapse: collapse;
   margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 1px 4px rgba(47, 47, 47, 0.837);
+}
+
+table tr:hover {
+  background-color: #e9e9e9;
 }
 
 /* Style for table headers */
@@ -114,7 +125,7 @@ th {
 
 /* Style for table data cells */
 td {
-  border: 1px solid #000000;
+  border: 1px solid #ddd;
   padding: 8px;
 }
 
@@ -124,7 +135,7 @@ td {
 }
 
 .staff-details {
-    margin-right: 20px; /* Add some margin between the tables */
+    margin-right: 30px; /* Add some margin between the tables */
 }
 
 
@@ -140,5 +151,12 @@ td {
   
   button:hover {
     background-color: #000000;
+  }
+  
+  i{
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #3d1c35;
   }
   

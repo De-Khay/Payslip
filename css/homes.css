@@ -1,0 +1,9 @@
+.container {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 270px;
+    height: 270px;
+    text-align: center;
+    display: inline-block;
+}
