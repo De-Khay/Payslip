@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Create a table to display payslip details
       const table = document.createElement('table');
       const headerRow = table.insertRow();
-      const headers = ['S/N', 'Staff ID', 'Employee Name', 'Phone', 'Email', 'Department', 'Unit', 'Actions'];
+      const headers = ['S/N', 'Staff ID', 'Employee Name', 'Phone', 'Email', 'Department', 'Unit', 'Actions', 'Payment'];
 
       // Add table headers
       headers.forEach(header => {
