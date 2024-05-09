@@ -117,11 +117,21 @@ function displayMaterials() {
         materialTable.innerHTML = '<p>No materials found</p>';
       } else {
         let tableHTML = '<table>';
-        tableHTML += '<tr><th>Name</th><th>Quantity</th><th>Note</th><th>Name of Entry</th><th>Date of Entry</th></tr>';
+        tableHTML += '<tr><th>#</th><th>Name</th><th>Quantity</th><th>Note</th><th>Name of Entry</th><th>Date of Entry</th></tr>';
+
+        let rowNumber = 1;
 
         querySnapshot.forEach(doc => {
           const material = doc.data();
-          tableHTML += `<tr><td>${material.name}</td><td>${material.quantity}</td><td>${material.note}</td><td>${material.entryName}</td><td>${material.entryDate}</td></tr>`;
+          tableHTML += `<tr>
+                          <td>${rowNumber}</td>
+                          <td>${material.name}</td>
+                          <td>${material.quantity}</td>
+                          <td>${material.note || '-'}</td>
+                          <td>${material.entryName}</td>
+                          <td>${material.entryDate}</td>
+                        </tr>`;
+          rowNumber++;
         });
 
         tableHTML += '</table>';
