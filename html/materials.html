@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Material Tracking System</title>
-    <link rel="stylesheet" href="/css/materials.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/materials.css" />
+  </head>
+  <body>
     <h1>Material Tracking System</h1>
 
     <div class="container">
-        <h1>Material Tracking</h1>
+      <h1>Material Tracking</h1>
 
-        <form id="entryForm">
-            <label for="name">Material Name:</label>
-            <input type="text" id="materialName" required>
+      <form>
+        <label for="materialName">Material Name:</label>
+        <input type="text" id="materialName" required />
 
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" required>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" required />
 
-            <label for="note">Note:</label>
-            <textarea id="note"></textarea>
+        <label for="note">Note:</label>
+        <input type="text" id="note" />
 
-            <label for="entryName">Name of Entry:</label>
-            <input type="text" id="entryName" required>
+        <label for="entryName">Entry Name:</label>
+        <input type="text" id="entryName" required />
 
-            <label st for="entryDate">Date of Entry:</label>
-            <input type="date" id="entryDate" required> <br>
+        <label for="entryDate">Entry Date:</label>
+        <input type="date" id="entryDate" required />
 
-            <button type="submit" id="submit">Add Material</button>
-        </form>
-        
-        <div id="searchSection">
-        <input type="text" id="searchInput" placeholder="Search...">
+        <button type="submit" id="submit">Add Material</button>
+      </form>
+
+      <!-- Modal for Success Message -->
+      <div id="successModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="successMessage">Material added successfully!</p>
+        </div>
+      </div>
+
+      <div id="searchSection">
+        <input type="text" id="searchInput" placeholder="Search..." />
         <button id="searchButton">Search</button>
+      </div>
     </div>
-    </div>
-
-    
 
     <div id="materialTable"></div>
 
     <!-- Firebase SDKs -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth-compat.js"></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth-compat.js"
+    ></script>
 
     <!-- Your JavaScript file -->
     <script src="/js/materials.js" type="module"></script>
-</body>
+  </body>
 </html>
