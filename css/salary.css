@@ -48,6 +48,29 @@ body {
     color: black; /* Text color on hover */
   }
   
+  .credit-debit-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+  }
+  
+  .credit,
+  .debit {
+    flex: 1; /* Equal width for both sections */
+    margin-right: 20px; /* Adjust spacing between sections */
+    border: 2px solid black;
+    padding-left: 15px;
+    padding-bottom: 15px;
+  }
+  
+  #staffIdInput,
+#fetchDetailsButton,
+.debit,
+.credit,
+#calculateButton {
+  margin: 20px auto; /* Adjust as needed */
+  width: 90%; /* Adjust the width if necessary */
+}
+
   fieldset{
     color: #404040;
     width: 60%;
@@ -75,7 +98,7 @@ body {
 }
 input[type="text"], input[type="number"], button {
   margin:0 auto;
-  width: 100%;
+  width: 90%;
   min-height: 2em;
   background-color: #cdcde4;
   border: 1px solid #bdbdd4;
@@ -101,3 +124,17 @@ button {
     border-radius: 5px;
     cursor: pointer;
   }
+
+  #fetchDetailsButton{
+  display: block;
+  margin: 20px; 
+  margin-left: 65px;
+}
+
+#calculateButton {
+  margin: 20px auto; /* Adjust as needed */
+  width: 100%;
+  padding: 10px; /* Adjust as needed */
+}
+
+
