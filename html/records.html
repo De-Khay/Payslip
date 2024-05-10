@@ -1,51 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Firestore Data Display with Search</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
-
-</head>
-<body>
- <div class="container">
-    <div class="sidebar">
-      <!-- Sidebar content goes here -->
-      <img src="../img/bt-logo-2.png" alt="BT  Logo">
-      <h2>HR SOFTWARE</h2>
-      <ul>
-        <li><a href="addstaff.html"><i class="fa-solid fa-house"></i>Add Staff</a></li>
-        <li><a href="records.html"><i class="fa-regular fa-clipboard"></i>RECORDS</a></li>
-        <li><a href="salary.html"><i class="fa-solid fa-naira-sign"></i>SALARY</a></li>
-        <!-- Add more sidebar items as needed -->
-      </ul>
-
-    </div>
-    <div class="contents"></div>
-       <div class="content">
-          <h2>Staff Records</h2>
-          
-          <div id="formContainer"></div>
-
-          <div class="searchStaff">
-          <input type="text" id="staffIdInput" placeholder="Search...">
-          <button id="fetchDetailsButton">Search</button>
-        </div>
-          <div id="staffDetailsContainer">
-            <div id="staffDetails">
-              <!-- Staff details will be displayed here -->
-            </div>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="menu-btn"><i class="ph-bold ph-caret-left"></i></div>
+        <div class="head">
+          <div class="user-img">
+            <img
+              src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTUxNTkxNzZ8&ixlib=rb-4.0.3&q=85"
+              alt=""
+            />
+          </div>
+          <div class="user-details">
+            <p class="title">web developer</p>
+            <p class="name">Kalvin Calimag</p>
           </div>
         </div>
+        <div class="nav">
+          <div class="menu">
+            <p class="title">Main</p>
+            <ul>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-house-simple"></i
+                  ><span class="text">Dashboard</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-user"></i
+                  ><span class="text">Viewers</span
+                  ><i class="arrow ph-bold ph-caret-down"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#"><span class="text">Users</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Subscribers</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-calendar-blank"></i
+                  ><span class="text">Agenda</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-chart-bar"></i
+                  ><span class="text">Revenue</span
+                  ><i class="arrow ph-bold ph-caret-down"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#"><span class="text">Earnings</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Funds</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Declines</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Payouts</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li class="active">
+                <a href="#"
+                  ><i class="icon ph-bold ph-file-text"></i
+                  ><span class="text">Articles</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="menu">
+            <p class="title">Settings</p>
+            <ul>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-gear"></i
+                  ><span class="text">Settings</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="menu">
+          <p class="title">Account</p>
+          <ul>
+            <li>
+              <a href="#"
+                ><i class="icon ph-bold ph-info"></i
+                ><span class="text">FAQ</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="icon ph-bold ph-sign-out"></i
+                ><span class="text">Logout</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="records-header">
+        <h2>Staff Records</h2>
+        
+        <div class="searchStaff">
+          <input type="text" id="staffIdInput" placeholder="Search..." />
+          <button id="fetchDetailsButton">Search</button>
+        </div>
+      </div>
+        <div class="overlay" id="overlay"></div>
+
+        <div class="form-container" id="formContainer" style="display: none">
+          <span class="close-btn" onclick="closeFormContainer()">&times;</span>
+          <form id="myForm">
+            <!-- Step 1 -->
+            <fieldset id="step1">
+              <h1>Employee Information</h1>
+              <h3>Please fill out this form with the required information</h3>
+
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" required />
+
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" required />
+
+              <label for="otherName">Other Name:</label>
+              <input type="text" id="otherName" />
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" required />
+
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="tel" id="phoneNumber" required />
+
+              <label for="address1">Address Line 1:</label>
+              <input type="text" id="address1" required />
+
+              <label for="address2">Address Line 2:</label>
+              <input type="text" id="address2" />
+
+              <label for="city">City:</label>
+              <input type="text" id="city" required />
+
+              <label for="state">State:</label>
+              <input type="text" id="state" required />
+
+              <label for="country">Country:</label>
+              <input type="text" id="country" required />
+
+              <label for="gender">Gender:</label>
+              <input type="text" id="gender" required />
+
+              <label for="staffId">Staff No/ID:</label>
+              <input type="text" id="staffId" required />
+
+              <label for="department">Department:</label>
+              <input type="text" id="department" required />
+
+              <label for="designation">Designation:</label>
+              <input type="text" id="designation" required />
+
+              <label for="unit">Unit:</label>
+              <input type="text" id="unit" required />
+
+              <button type="button" id="nextStep1">Next</button>
+            </fieldset>
+
+            <!-- Step 2 -->
+            <fieldset id="step2" style="display: none">
+              <h1>Payment Information</h1>
+              <p>Please fill out this form with the required information</p>
+
+              <label for="paymentInfo">Payment Info:</label>
+              <input type="text" id="paymentInfo" />
+
+              <label for="baseSalary">Base Salary:</label>
+              <input type="number" id="baseSalary" />
+
+              <label for="gross">Gross:</label>
+              <input type="number" id="gross" />
+
+              <label for="net">Net:</label>
+              <input type="number" id="net" />
+
+              <label for="allowance">Allowance:</label>
+              <input type="number" id="allowance" />
+
+              <label for="tax">Tax:</label>
+              <input type="number" id="tax" />
+
+              <label for="pension">Pension:</label>
+              <input type="number" id="pension" />
+
+              <label for="payPeriod">Pay Period:</label>
+              <input type="text" id="payPeriod" />
+
+              <label for="entitlement">Entitlement:</label>
+              <input type="text" id="entitlement" />
+
+              <button type="button" id="prevStep2">Previous</button>
+              <button type="submit" id="submit">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+        <hr>
+        <br>
+        <div>
+          <button id="addStaffButton"><i class="fa-solid fa-plus"></i> Add</button>
+        </div>
+       
+        <div id="staffDetailsContainer">
+          <div id="staffDetails">
+            <!-- Staff details will be displayed here -->
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-    
+
     <!-- Include Firebase JavaScript SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
-    
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
+      type="module"
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
+      type="module"
+    ></script>
+
     <script src="../js/records.js" type="module"></script>
-</body>
+    <script src="../js/script.js" type="module"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+    integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+    crossorigin="anonymous"
+  ></script>
+
+  </body>
 </html>

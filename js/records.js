@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Add "Details" button
         const detailsCell = row.insertCell();
         const detailsButton = document.createElement('button');
-        detailsButton.innerHTML = '<i class="fas fa-in fo-circle"></i> Details';
+        detailsButton.innerHTML = ' Details';
         detailsButton.classList.add('details-button');
         detailsButton.setAttribute('data-staff-id', payslipData.staffId); // Set staff ID as custom attribute
         detailsCell.appendChild(detailsButton);
@@ -92,4 +92,75 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Handle error (e.g., display an error message)
     staffDetailsElement.innerHTML = `<p>Error fetching payslips: ${error.message}</p>`;
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const formContainer = document.getElementById('formContainer');
+  const overlay = document.getElementById('overlay');
+
+  // Function to open the form container
+  function openFormContainer() {
+      if (formContainer && overlay) {
+          formContainer.style.display = 'block';
+          overlay.style.display = 'block';
+      }
+  }
+
+  // Function to close the form container
+  function closeFormContainer() {
+      if (formContainer && overlay) {
+          formContainer.style.display = 'none';
+          overlay.style.display = 'none';
+      }
+  }
+
+  // Close form container if overlay is clicked
+  overlay.addEventListener('click', () => {
+      closeFormContainer();
+  });
+
+  // Event listener for "Add Staff" button
+  const addStaffButton = document.getElementById('addStaffButton');
+  if (addStaffButton) {
+      addStaffButton.addEventListener('click', () => {
+          openFormContainer();
+      });
+  }
+
+  // Event listener for close button inside form container
+  const closeBtn = document.querySelector('.close-btn');
+  if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+          closeFormContainer();
+      });
+  }
+
+  // Handle form submission
+  const myForm = document.getElementById('myForm');
+  if (myForm) {
+      myForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          // Handle form submission logic here
+          console.log('Form submitted');
+          closeFormContainer(); // Close the form after submission
+      });
+  }
+});
+
+$(".menu > ul > li").click(function (e) {
+  // Remove the 'active' class from other menu items
+  $(this).siblings().removeClass("active");
+  // Toggle the 'active' class on the clicked menu item
+  $(this).toggleClass("active");
+  // Toggle the visibility of the submenu
+  $(this).find("ul").slideToggle();
+  // Close other submenus if they are open
+  $(this).siblings().find("ul").slideUp();
+  // Remove the 'active' class from submenu items
+  $(this).siblings().find("ul").find("li").removeClass("active");
+});
+
+$(".menu-btn").click(function () {
+  // Toggle the 'active' class on the sidebar
+  $(".sidebar").toggleClass("active");
 });
