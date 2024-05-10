@@ -4,22 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  </head>
 <body>
   <div class="container">
-      <div class="sidebar">
-        <!-- Sidebar content goes here -->
-        <img src="../img/bt-logo-2.png" alt="BT logo">
-        <h2>HR SOFTWARE</h2>
-        <ul>
-          <li><a href="addstaff.html"><i class="fa-solid fa-house"></i>Add Staff</a></li>
-          <li><a href="records.html"><i class="fa-regular fa-clipboard"></i>RECORDS</a></li>
-          <li><a href="salary.html"><i class="fa-solid fa-naira-sign"></i>SALARY</a></li>
-          <!-- Add more sidebar items as needed -->
-        </ul>
-      </div>
+    <body>
+      <div class="container">
+        <div class="sidebar">
+          <div class="menu-btn"><i class="ph-bold ph-caret-left"></i></div>
+          <div class="head">
+            <div class="user-img">
+              <img
+                src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTUxNTkxNzZ8&ixlib=rb-4.0.3&q=85"
+                alt=""
+              />
+            </div>
+            <div class="user-details">
+              <p class="title">web developer</p>
+              <p class="name">Kalvin Calimag</p>
+            </div>
+          </div>
+          <div class="nav">
+            <div class="menu">
+              <p class="title">Main</p>
+              <ul>
+                <li>
+                  <a href="#"
+                    ><i class="icon ph-bold ph-house-simple"></i
+                    ><span class="text">Dashboard</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="icon ph-bold ph-user"></i
+                    ><span class="text">Viewers</span
+                    ><i class="arrow ph-bold ph-caret-down"></i
+                  ></a>
+                  <ul class="sub-menu">
+                    <li>
+                      <a href="#"><span class="text">Users</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="text">Subscribers</span></a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="icon ph-bold ph-calendar-blank"></i
+                    ><span class="text">Agenda</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="icon ph-bold ph-chart-bar"></i
+                    ><span class="text">Revenue</span
+                    ><i class="arrow ph-bold ph-caret-down"></i
+                  ></a>
+                  <ul class="sub-menu">
+                    <li>
+                      <a href="#"><span class="text">Earnings</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="text">Funds</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="text">Declines</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="text">Payouts</span></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="active">
+                  <a href="#"
+                    ><i class="icon ph-bold ph-file-text"></i
+                    ><span class="text">Articles</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="menu">
+              <p class="title">Settings</p>
+              <ul>
+                <li>
+                  <a href="#"
+                    ><i class="icon ph-bold ph-gear"></i
+                    ><span class="text">Settings</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="menu">
+            <p class="title">Account</p>
+            <ul>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-info"></i
+                  ><span class="text">FAQ</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-sign-out"></i
+                  ><span class="text">Logout</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
       <div class="contents">
         <div class="content">
           <h2>Employee Details</h2>
@@ -32,9 +137,20 @@
         </div>
      </div>
   </div>
-    <!-- Load Firebase scripts and custom JavaScript -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
-    <script src="../js/details.js" type="module"></script>
+  <script
+  src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
+  type="module"
+></script>
+<script
+  src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
+  type="module"
+></script>
+
+<script src="../js/details.js" type="module"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+crossorigin="anonymous"
+></script>
 </body>
 </html>

@@ -1,9 +1,37 @@
+.contained {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Adjust the height as needed */
+}
+
 .container {
     border: 1px solid black;
-    padding: 10px;
+    padding-top: 10px;
     margin: 10px;
     width: 270px;
-    height: 270px;
+    height: 150px;
     text-align: center;
-    display: inline-block;
+    display: inline-block;  
+    border-radius: 25px;
+    box-shadow: 0px 1px 4px rgba(47, 47, 47, 0.837);
+    background-color: #3d1c35;
+    color: #f9f9f9;
+}
+
+.container:hover {
+   background-color: #5d154b;
+}
+
+.container span {
+    font-size: 100px;
+    font-weight: bold;
+    margin-left: 5px; /* Add some space between the icon and the text */
+}
+
+#totalMaleContainer,
+#totalITContainer,
+#totalFemaleContainer,
+#totalEmployeesContainer {
+    font-size: 28px; /* Adjust the font size as needed */
 }
