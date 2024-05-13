@@ -3,7 +3,7 @@ body {
   background-color: #f0f0f0;
 }
 
-.container {
+.materials-container {
   max-width: 400px;
   height: auto;
   margin: 0 auto;
@@ -11,6 +11,7 @@ body {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* margin-left: 2330px; */
 }
 
 h1 {
@@ -119,6 +120,9 @@ button:hover {
   color: #fff;
 }
 
+.content {
+  margin-left: 20px;
+}
 #searchButton:hover {
   background-color: #0056b3;
 }
