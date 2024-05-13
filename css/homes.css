@@ -38,3 +38,85 @@
 #totalEmployeesContainer {
     font-size: 20px; /* Reduced font size for labels */
 }
+
+.content {
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .year-filter {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 5px;
+  }
+  
+  .year-filter select {
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .applyButton {
+    padding: 8px 12px;
+    background-color: #5d154b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: -1px;
+  }
+  
+  .options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-dropdown {
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .custom-dropdown select {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-right: -10px;
+    z-index: 100;
+    display: none;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+  }
+  
+  .dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    /* right: 10px; */
+    transform: translateY(-50%);
+    color: #666;
+    cursor: pointer;
+  }
+  
+  .dropdown-text {
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
