@@ -3,35 +3,38 @@
     justify-content: center;
     align-items: center;
     height: 400px; /* Adjust the height as needed */
+    margin-left: 5px;
 }
 
-.container {
-    border: 1px solid black;
-    padding-top: 10px;
-    margin: 10px;
-    width: 270px;
-    height: 150px;
+.stats-container {
+    border-radius: 15px;
+    box-shadow: 0px 2px 4px rgba(47, 47, 47, 0.2);
+    background-color: #fff;
+    color: #3d1c35;
+    padding: 15px; /* Adjusted padding for spacing */
+    width: 220px; /* Reduced width for smaller containers */
+    height: 120px; /* Reduced height for smaller containers */
     text-align: center;
-    display: inline-block;  
-    border-radius: 25px;
-    box-shadow: 0px 1px 4px rgba(47, 47, 47, 0.837);
-    background-color: #3d1c35;
-    color: #f9f9f9;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 10px; /* Added margin for spacing between containers */
 }
 
-.container:hover {
-   background-color: #5d154b;
+.stats-container:hover {
+    background-color: #5d154b;
+    color: #fff;
 }
 
-.container span {
-    font-size: 100px;
+.stats-container span {
+    font-size: 50px; /* Reduced font size for numbers */
     font-weight: bold;
-    margin-left: 5px; /* Add some space between the icon and the text */
+    margin-left: 5px;
 }
 
 #totalMaleContainer,
 #totalITContainer,
 #totalFemaleContainer,
 #totalEmployeesContainer {
-    font-size: 28px; /* Adjust the font size as needed */
+    font-size: 20px; /* Reduced font size for labels */
 }
