@@ -5,7 +5,7 @@
     align-items: center;
     margin-left: 5px;
     padding: 10px; /* Adjusted padding for spacing */
-    max-width: 1000px; /* Adjusted max width */
+    max-width: 100%; /* Adjusted max width */
 }
 
 .stats-container {
@@ -14,7 +14,7 @@
     background-color: #fff;
     color: #3d1c35;
     padding: 15px; /* Adjusted padding for spacing */
-    width: 210px; /* Reduced width for smaller containers */
+    width: 180px; /* Reduced width for smaller containers */
     height: 120px; /* Reduced height for smaller containers */
     text-align: center;
     display: inline-block;

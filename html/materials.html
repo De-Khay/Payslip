@@ -121,11 +121,51 @@
         </div>
       </div>
       <div class="content">
-        <h1>Material Tracking System</h1>
-
         <div class="material-container">
-        <h1>Material Tracking</h1>
-
+          <div class="header">
+            <h2>Material Tracking</h2>
+            <div class="year-filter">
+              <select name="year" id="yearFilter" aria-placeholder="year">
+                <option value="#">Year</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+              </select>
+              <button class="applyButton">Apply</button>
+            </div>
+            <div class="options">
+              <div class="custom-dropdown language-dropdown">
+                <span class="dropdown-text">Language</span>
+                <i class="fas fa-caret-down dropdown-arrow"></i>
+                <select name="language" id="languageSelect">
+                  <option value="en">English</option>
+                  <option value="fr">French</option>
+                  <option value="es">Spanish</option>
+                </select>
+              </div>
+              <div class="custom-dropdown report-dropdown">
+                <span class="dropdown-text">Print</span>
+                <i class="fas fa-caret-down dropdown-arrow"></i>
+                <select name="reportType" id="reportTypeSelect">
+                  <option value="word">Word</option>
+                  <option value="pdf">PDF</option>
+                  <option value="excel">Excel</option>
+                </select>
+              </div>
+              <div class="custom-dropdown department-dropdown">
+                <span class="dropdown-text">Department</span>
+                <i class="fas fa-caret-down dropdown-arrow"></i>
+                <select name="department" id="departmentSelect">
+                  <option value="technical">Technical Services</option>
+                  <option value="general">General Services</option>
+                  <option value="financial">Financial Services</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr class="separator" />
+          <br>
+          <br>
         <form>
           <label for="materialName">Material Name:</label>
           <input type="text" id="materialName" required />
@@ -158,11 +198,11 @@
         </div>
 
         
-      </div>
+    
 
       <!-- HTML content -->
       <div id="materialTable"></div>
-      
+    </div>
       </div>
     </div>
     <!-- Firebase SDKs and JavaScript -->
