@@ -40,7 +40,7 @@
 #totalTSContainer,
 #totalFsContainer,
 #totalGsContainer {
-    font-size: 22px; /* Reduced font size for labels */
+    font-size: 20px; /* Reduced font size for labels */
 }
 
 .content {
