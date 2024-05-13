@@ -82,20 +82,3 @@ window.onload = function() {
     getTotalMaleStaff();
     getTotalITStaff();
 };
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
-  
-    dropdownArrows.forEach((arrow) => {
-      arrow.addEventListener("click", function () {
-        const dropdown = this.parentNode.querySelector("select");
-        if (dropdown.style.display === "none" || dropdown.style.display === "") {
-          dropdown.style.display = "block";
-        } else {
-          dropdown.style.display = "none";
-        }
-      });
-    });
-  });
-  
