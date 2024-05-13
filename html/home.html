@@ -1,28 +1,202 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="../css/homes.css">
-    </head>
-    <body>
-            <div class="contained">
-                <div class="container" id="totalEmployeesContainer">
-                    Total Employees: <span id="totalEmployees">0</span>
-                </div>
-                <div class="container" id="totalFemaleContainer">
-                    Total Female Staff: <span id="totalFemale">0</span>
-                </div>
-                <div class="container" id="totalMaleContainer">
-                    Total Male Staff: <span id="totalMale">0</span>
-                </div>
-                <div class="container" id="totalITContainer">
-                    Total IT Staff: <span id="totalIT">0</span>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/homes.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- <link rel="stylesheet" href="../css/styles.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
+      type="module"
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
+      type="module"
+    ></script>
+    <script src="../js/home.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="menu-btn"><i class="ph-bold ph-caret-left"></i></div>
+        <div class="head">
+          <div class="user-img">
+            <img src="../img//bt-logo-1.png" alt="" />
+          </div>
+          <div class="user-details">
+            <p class="title"></p>
+            <p class="name"></p>
+          </div>
+        </div>
+        <div class="nav">
+          <div class="menu">
+            <p class="title">Main</p>
+            <ul>
+              <li>
+                <a href="home.html"
+                  ><i class="icon ph-bold ph-house-simple"></i
+                  ><span class="text">Dashboard</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-user"></i
+                  ><span class="text">Staff Records</span
+                  ><i class="arrow ph-bold ph-caret-down"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="records.html"><span class="text">Records</span></a>
+                  </li>
+                  <li>
+                    <a href="records.html"><span class="text">Details</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="materials.html"
+                  ><i class="icon ph-bold ph-calendar-blank"></i
+                  ><span class="text">Materials</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-chart-bar"></i
+                  ><span class="text">Salary</span
+                  ><i class="arrow ph-bold ph-caret-down"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#"><span class="text">Earnings</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Funds</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Declines</span></a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="text">Payouts</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li class="active">
+                <a href="#"
+                  ><i class="icon ph-bold ph-file-text"></i
+                  ><span class="text">Articles</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="menu">
+            <p class="title">Settings</p>
+            <ul>
+              <li>
+                <a href="#"
+                  ><i class="icon ph-bold ph-gear"></i
+                  ><span class="text">Settings</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="menu">
+          <p class="title">Account</p>
+          <ul>
+            <li>
+              <a href="#"
+                ><i class="icon ph-bold ph-info"></i
+                ><span class="text">FAQ</span></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><i class="icon ph-bold ph-sign-out"></i
+                ><span class="text">Logout</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- main content -->
+      <div class="content">
+        <div class="header">
+          <h2>HR Dashboard</h2>
+          <div class="year-filter">
+            <select name="year" id="yearFilter">
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+            <button class="applyButton">Apply</button>
+          </div>
+          <div class="options">
+            <div class="custom-dropdown language-dropdown">
+              <span class="dropdown-text">Language</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="language" id="languageSelect">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+              </select>
             </div>
-            <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js" type="module"></script>
-            <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js" type="module"></script>
-            <script src="../js/home.js" type="module"></script>
-    </body>
-    </html>
+            <div class="custom-dropdown report-dropdown">
+              <span class="dropdown-text">Reports</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="reportType" id="reportTypeSelect">
+                <option value="word">Word</option>
+                <option value="pdf">PDF</option>
+                <option value="excel">Excel</option>
+              </select>
+            </div>
+            <div class="custom-dropdown department-dropdown">
+              <span class="dropdown-text">Department</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="department" id="departmentSelect">
+                <option value="technical">Technical Services</option>
+                <option value="general">General Services</option>
+                <option value="financial">Financial Services</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <hr class="separator" />
+        <div class="contained">
+          <!-- Statistics containers -->
+          <div class="stats-container" id="totalEmployeesContainer">
+            Total Employees: <span id="totalEmployees">0</span>
+          </div>
+          <div class="stats-container" id="totalFemaleContainer">
+            Total Female Staff: <span id="totalFemale">0</span>
+          </div>
+          <div class="stats-container" id="totalMaleContainer">
+            Total Male Staff: <span id="totalMale">0</span>
+          </div>
+          <div class="stats-container" id="totalITContainer">
+            Total IT Staff: <span id="totalIT">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="../js//userdetails.js" type="module"></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+      integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/sidenav.js"></script>
+  </body>
+</html>
