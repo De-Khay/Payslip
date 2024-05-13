@@ -211,6 +211,14 @@ input[type="number"] {
   margin-bottom: 10px;
   box-sizing: border-box;
 }
+#department{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
 
 /* Button styles */
 

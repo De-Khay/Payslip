@@ -59,26 +59,64 @@ async function getTotalMaleStaff() {
     }
 }
 
-// Function to fetch and display total number of IT staff
-async function getTotalITStaff() {
+// Function to fetch and display total number of Technical Services staff
+async function getTotalTechnicalServicesStaff() {
     try {
         const querySnapshot = await getDocs(collection(db, "payslip"));
-        let ITCount = 0;
+        let technicalServicesCount = 0;
         querySnapshot.forEach((doc) => {
-            if (doc.data().department === "IT") {
-                ITCount++;
+            if (doc.data().department === "Technical Services") {
+                technicalServicesCount++;
             }
         });
-        document.getElementById('totalIT').textContent = ITCount;
+        document.getElementById('totalTs').textContent = technicalServicesCount;
     } catch (error) {
         console.error("Error getting documents: ", error);
     }
 }
+
+
+// Function to fetch and display total number of Financial Services staff
+async function getTotalFinancialServicesStaff() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "payslip"));
+        let financialServicesCount = 0;
+        querySnapshot.forEach((doc) => {
+            if (doc.data().department === "Financial Services") {
+                financialServicesCount++;
+            }
+        });
+        document.getElementById('totalFs').textContent = financialServicesCount;
+    } catch (error) {
+        console.error("Error getting documents: ", error);
+    }
+}
+
+
+// Function to fetch and display total number of General Services staff
+async function getTotalGeneralServicesStaff() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "payslip"));
+        let generalServicesCount = 0;
+        querySnapshot.forEach((doc) => {
+            if (doc.data().department === "General Services") {
+                generalServicesCount++;
+            }
+        });
+        document.getElementById('totalGs').textContent = generalServicesCount;
+    } catch (error) {
+        console.error("Error getting documents: ", error);
+    }
+}
+
+
 
 // Call the functions to fetch and display total number of employees, female, male, and IT staff when the page loads
 window.onload = function() {
     getTotalEmployees();
     getTotalFemaleStaff();
     getTotalMaleStaff();
-    getTotalITStaff();
+    getTotalTechnicalServicesStaff();
+    getTotalFinancialServicesStaff();
+    getTotalGeneralServicesStaff();
 };

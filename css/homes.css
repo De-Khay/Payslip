@@ -1,9 +1,11 @@
 .contained {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 400px; /* Adjust the height as needed */
     margin-left: 5px;
+    padding: 10px; /* Adjusted padding for spacing */
+    max-width: 1000px; /* Adjusted max width */
 }
 
 .stats-container {
@@ -12,7 +14,7 @@
     background-color: #fff;
     color: #3d1c35;
     padding: 15px; /* Adjusted padding for spacing */
-    width: 220px; /* Reduced width for smaller containers */
+    width: 210px; /* Reduced width for smaller containers */
     height: 120px; /* Reduced height for smaller containers */
     text-align: center;
     display: inline-block;
@@ -33,10 +35,12 @@
 }
 
 #totalMaleContainer,
-#totalITContainer,
 #totalFemaleContainer,
-#totalEmployeesContainer {
-    font-size: 20px; /* Reduced font size for labels */
+#totalEmployeesContainer,
+#totalTSContainer,
+#totalFsContainer,
+#totalGsContainer {
+    font-size: 22px; /* Reduced font size for labels */
 }
 
 .content {
