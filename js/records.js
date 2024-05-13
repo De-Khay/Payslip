@@ -64,8 +64,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Add click event listener to the details button
         detailsButton.addEventListener('click', () => {
           const staffId = payslipData.staffId;
-          // Redirect to details.html with staffId as a query parameter
-          window.location.href = `details.html?staffId=${staffId}`;
+          const modalContent = document.getElementById('modal-content');
+
+          // Populate modal content with payslip details
+          modalContent.innerHTML = `
+            <h2>Payslip Details</h2>
+            <p>Staff ID: ${payslipData.staffId}</p>
+            <p>Name: ${payslipData.firstName} ${payslipData.lastName}</p>
+            <p>Email: ${payslipData.email}</p>
+            <p>Phone Number: ${payslipData.phoneNumber}</p>
+            <p>Department: ${payslipData.department}</p>
+            <p>Unit: ${payslipData.unit}</p>
+            <p>Unit: ${payslipData.unit}</p>
+          `;
+
+          // Display the modal
+          const modal = document.getElementById('myModal');
+          modal.style.display = 'block';
         });
           
         // Add "Edit" button with Font Awesome icon
