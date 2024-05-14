@@ -56,15 +56,27 @@
                 </ul>
               </li>
               <li>
-                <a href="materials.html"
+                <a href="events.html"
                   ><i class="icon ph-bold ph-calendar-blank"></i
-                  ><span class="text">Materials</span></a
+                  ><span class="text">Events</span></a
+                >
+              </li>
+              <li>
+                <a href="holidays.html"
+                  ><i class="icon ph-bold ph-calendar-blank"></i
+                  ><span class="text">Holidays</span></a
+                >
+              </li>
+              <li  class="active">
+                <a href="materials.html" 
+                  ><i class="fas fa-cubes"></i>
+                  <span class="text">Materials</span></a
                 >
               </li>
               <li>
                 <a href="#"
                   ><i class="icon ph-bold ph-chart-bar"></i
-                  ><span class="text">Salary</span
+                  ><span class="text">Reports</span
                   ><i class="arrow ph-bold ph-caret-down"></i
                 ></a>
                 <ul class="sub-menu">
@@ -82,7 +94,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="active">
+              <li>
                 <a href="#"
                   ><i class="icon ph-bold ph-file-text"></i
                   ><span class="text">Articles</span></a
@@ -164,45 +176,42 @@
             </div>
           </div>
           <hr class="separator" />
-          <br>
-          <br>
-        <form>
-          <label for="materialName">Material Name:</label>
-          <input type="text" id="materialName" required />
+          <br />
+          <br />
+          <form>
+            <label for="materialName">Material Name:</label>
+            <input type="text" id="materialName" required />
 
-          <label for="quantity">Quantity:</label>
-          <input type="number" id="quantity" required />
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" required />
 
-          <label for="note">Note:</label>
-          <input type="text" id="note" />
+            <label for="note">Note:</label>
+            <input type="text" id="note" />
 
-          <label for="entryName">Entry Name:</label>
-          <input type="text" id="entryName" required />
+            <label for="entryName">Entry Name:</label>
+            <input type="text" id="entryName" required />
 
-          <label for="entryDate">Entry Date:</label>
-          <input type="date" id="entryDate" required />
+            <label for="entryDate">Entry Date:</label>
+            <input type="date" id="entryDate" required />
 
-          <button type="submit" id="submit">Add Material</button>
-        </form>
+            <button type="submit" id="submit">Add Material</button>
+          </form>
 
-        <!-- Modal for Success Message -->
-        <div id="successModal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id="successMessage">Material added successfully!</p>
+          <!-- Modal for Success Message -->
+          <div id="successModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p id="successMessage">Material added successfully!</p>
+            </div>
           </div>
-        </div>
-        <div id="searchSection">
-          <input type="text" id="searchInput" placeholder="Search..." />
-          <button id="searchButton">Search</button>
-        </div>
+          <div id="searchSection">
+            <input type="text" id="searchInput" placeholder="Search..." />
+            <button id="searchButton">Search</button>
+          </div>
 
-        
-    
-
-      <!-- HTML content -->
-      <div id="materialTable"></div>
-    </div>
+          <!-- HTML content -->
+          <div id="materialTable"></div>
+        </div>
       </div>
     </div>
     <!-- Firebase SDKs and JavaScript -->

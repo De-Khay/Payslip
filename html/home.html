@@ -47,7 +47,7 @@
           <div class="menu">
             <p class="title">Main</p>
             <ul>
-              <li>
+              <li  class="active">
                 <a href="home.html"
                   ><i class="icon ph-bold ph-house-simple"></i
                   ><span class="text">Dashboard</span></a
@@ -69,15 +69,27 @@
                 </ul>
               </li>
               <li>
-                <a href="materials.html"
+                <a href="events.html"
                   ><i class="icon ph-bold ph-calendar-blank"></i
-                  ><span class="text">Materials</span></a
+                  ><span class="text">Events</span></a
+                >
+              </li>
+              <li>
+                <a href="holidays.html"
+                  ><i class="icon ph-bold ph-calendar-blank"></i
+                  ><span class="text">Holidays</span></a
+                >
+              </li>
+              <li>
+                <a href="materials.html"
+                  ><i class="fas fa-cubes"></i>
+                  <span class="text">Materials</span></a
                 >
               </li>
               <li>
                 <a href="#"
                   ><i class="icon ph-bold ph-chart-bar"></i
-                  ><span class="text">Salary</span
+                  ><span class="text">Reports</span
                   ><i class="arrow ph-bold ph-caret-down"></i
                 ></a>
                 <ul class="sub-menu">
@@ -95,7 +107,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="active">
+              <li>
                 <a href="#"
                   ><i class="icon ph-bold ph-file-text"></i
                   ><span class="text">Articles</span></a
@@ -179,11 +191,9 @@
         <hr class="separator" />
         <div class="textHeader">
           <!-- <h1>Welcome</h1> -->
-         
         </div>
-        
+
         <div class="contained">
-          
           <!-- Total Employees Container -->
           <div class="stats-container" id="totalEmployeesContainer">
             <div class="icon-container">
@@ -258,9 +268,9 @@
               class="chart-container salary-chart-container"
               id="salaryChartContainer"
             >
-            <div>Base Salary Data <span id="totalBaseSalary"></span></div>
-            <hr>
-            <br>
+              <div>Base Salary Data <span id="totalBaseSalary"></span></div>
+              <hr />
+              <br />
               <canvas id="salaryChartCanvas"></canvas>
             </div>
 
@@ -268,21 +278,21 @@
               class="chart-container department-chart-container"
               id="departmentChartContainer"
             >
-            <div>Department Pie Chart <span id="totalBaseSalary"></span></div>
-            <hr>
-            <br>
+              <div>Department Pie Chart <span id="totalBaseSalary"></span></div>
+              <hr />
+              <br />
               <canvas id="departmentChartCanvas"></canvas>
             </div>
 
             <div class="chart-container graph-container" id="graphContainer">
               <div>Tax and Pension Data <span id="totalBaseSalary"></span></div>
-              <hr>
-              <br>
+              <hr />
+              <br />
               <canvas id="salaryGraphCanvas"></canvas>
               <canvas id="pensionTaxGraphCanvas"></canvas>
               <div>Total Pensions: <span id="totalPensions"></span></div>
               <div>Total Tax: <span id="totalTax"></span></div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
