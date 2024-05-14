@@ -39,14 +39,14 @@
                   ><span class="text">Dashboard</span></a
                 >
               </li>
-              <li  class="active">
-                <a href="#" 
+              <li class="active">
+                <a href="#"
                   ><i class="icon ph-bold ph-user"></i
                   ><span class="text">Staff Records</span
                   ><i class="arrow ph-bold ph-caret-down"></i
                 ></a>
                 <ul class="sub-menu">
-                  <li >
+                  <li>
                     <a href="records.html"><span class="text">Records</span></a>
                   </li>
                   <li>
@@ -279,5 +279,34 @@
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
       crossorigin="anonymous"
     ></script>
+    <script>
+      const recordsPerPage = 10;
+      let currentPage = 1;
+
+      function displayRecords(records) {
+        const startIndex = (currentPage - 1) * recordsPerPage;
+        const endIndex = startIndex + recordsPerPage;
+        const paginatedRecords = records.slice(startIndex, endIndex);
+
+        // Display paginatedRecords in the table
+      }
+
+      // Event listener for next button
+      document.getElementById('nextButton').addEventListener('click', () => {
+        currentPage++;
+        displayRecords(allRecords);
+      });
+
+      // Event listener for previous button
+      document.getElementById('prevButton').addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayRecords(allRecords);
+        }
+      });
+
+      // Initial display of records
+      displayRecords(allRecords);
+    </script>
   </body>
 </html>

@@ -276,13 +276,17 @@ button:hover {
 
 /* Style for the table */
 table {
-  width: 1290px;
+  width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
   border-radius: 10px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0px 1px 4px rgba(47, 47, 47, 0.837);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure rounded corners are displayed */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 table tr:hover {
@@ -290,18 +294,18 @@ table tr:hover {
 }
 
 /* Style for table headers */
-th {
+/* th {
   background-color: #F0F0F0;
   border: 1px solid rgb(0, 0, 0) ;
   padding: 8px;
   text-align: left;
-}
+} */
 
 /* Style for table data cells */
-td {
+/* td {
   border: 1px solid #ddd;
   padding: 8px;
-}
+} */
 
 .table-container {
     display: flex;

@@ -54,7 +54,7 @@ h3{
 }
 
 
-table {
+/* table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
@@ -62,23 +62,24 @@ table {
   font-family: Arial, sans-serif;
   box-shadow: 0px 1px 4px rgba(47, 47, 47, 0.837);
   border-radius: 10px;
-}
+} */
 
-table th,
+
 table td {
-  padding: 12px;
+  padding: 5px;
   text-align: left;
-  border: 1px solid #37373789;
-}
+} 
 
-table th {
+/* table th {
   background-color: #3d1c35;
   color: #F6F5FC;
   
-}
+} */
 
 table tr:nth-child(even) {
   background-color: hsl(0, 0%, 98%);
+  
+  border: 1px solid #37373789;
 }
 
 table tr:hover {
