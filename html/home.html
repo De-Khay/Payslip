@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/homes.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <!-- <link rel="stylesheet" href="../css/styles.css" /> -->
+    <!-- Include Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -25,6 +28,7 @@
       type="module"
     ></script>
     <script src="../js/home.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="container">
@@ -173,25 +177,112 @@
           </div>
         </div>
         <hr class="separator" />
+        <div class="textHeader">
+          <!-- <h1>Welcome</h1> -->
+         
+        </div>
+        
         <div class="contained">
-          <!-- Statistics containers -->
+          
+          <!-- Total Employees Container -->
           <div class="stats-container" id="totalEmployeesContainer">
-            Total Employees: <br><span id="totalEmployees">0</span>
+            <div class="icon-container">
+              <i class="fas fa-users"></i>
+              <h6>Total Employees</h6>
+            </div>
+            <span id="totalEmployees" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
           </div>
+
+          <!-- Total Female Staff Container -->
           <div class="stats-container" id="totalFemaleContainer">
-            Total Female Staff:  <br><span id="totalFemale">0</span>
+            <div class="icon-container">
+              <i class="fas fa-female"></i>
+              <h6>Female Staff</h6>
+            </div>
+            <span id="totalFemale" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
           </div>
+
+          <!-- Total Male Staff Container -->
           <div class="stats-container" id="totalMaleContainer">
-            Total Male Staff:  <br><span id="totalMale">0</span>
+            <div class="icon-container">
+              <i class="fas fa-male"></i>
+              <h6>Male Staff</h6>
+            </div>
+            <span id="totalMale" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
           </div>
+
+          <!-- Total TS Staff Container -->
           <div class="stats-container" id="totalTSContainer">
-            Total TS Staff:  <br><span id="totalTs">0</span>
+            <div class="icon-container">
+              <i class="fas fa-user-graduate"></i>
+              <h6>Technical Services</h6>
+            </div>
+            <span id="totalTs" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
           </div>
+
+          <!-- Total FS Staff Container -->
           <div class="stats-container" id="totalFsContainer">
-              Total FS Staff:  <br><span id="totalFs">0</span>
+            <div class="icon-container">
+              <i class="fas fa-user-tie"></i>
+              <h6>Financial Services</h6>
+            </div>
+            <span id="totalFs" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
           </div>
+
+          <!-- Total GS Staff Container -->
           <div class="stats-container" id="totalGsContainer">
-              Total GS Staff:  <br><span id="totalGs">0</span>
+            <div class="icon-container">
+              <i class="fas fa-user-secret"></i>
+              <h6>General Services</h6>
+            </div>
+            <span id="totalGs" class="tag-icon"
+              ><i class="fas fa-calendar-alt"></i
+            ></span>
+          </div>
+
+          <!-- Container 1: Bar Chart -->
+          <div class="chart-wrapper">
+            <!-- Container 1: Bar Chart -->
+            <!-- Chart Containers -->
+            <div
+              class="chart-container salary-chart-container"
+              id="salaryChartContainer"
+            >
+            <div>Base Salary Data <span id="totalBaseSalary"></span></div>
+            <hr>
+            <br>
+              <canvas id="salaryChartCanvas"></canvas>
+            </div>
+
+            <div
+              class="chart-container department-chart-container"
+              id="departmentChartContainer"
+            >
+            <div>Department Pie Chart <span id="totalBaseSalary"></span></div>
+            <hr>
+            <br>
+              <canvas id="departmentChartCanvas"></canvas>
+            </div>
+
+            <div class="chart-container graph-container" id="graphContainer">
+              <div>Tax and Pension Data <span id="totalBaseSalary"></span></div>
+              <hr>
+              <br>
+              <canvas id="salaryGraphCanvas"></canvas>
+              <canvas id="pensionTaxGraphCanvas"></canvas>
+              <div>Total Pensions: <span id="totalPensions"></span></div>
+              <div>Total Tax: <span id="totalTax"></span></div>
+          </div>
           </div>
         </div>
       </div>

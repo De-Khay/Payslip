@@ -1,47 +1,71 @@
 .contained {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-left: 5px;
-    padding: 10px; /* Adjusted padding for spacing */
-    max-width: 100%; /* Adjusted max width */
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+h1{
+  margin-left: 40px;
+  margin-top: 10px;
 }
 
 .stats-container {
-    border-radius: 15px;
-    box-shadow: 0px 2px 4px rgba(47, 47, 47, 0.2);
-    background-color: #fff;
-    color: #3d1c35;
-    padding: 15px; /* Adjusted padding for spacing */
-    width: 180px; /* Reduced width for smaller containers */
-    height: 120px; /* Reduced height for smaller containers */
-    text-align: center;
-    display: inline-block;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin: 10px; /* Added margin for spacing between containers */
+  border-radius: 7px;
+  box-shadow: 0px 2px 4px rgba(47, 47, 47, 0.2);
+  background-color: #fff;
+  color: #444444;
+  padding: 10px;
+  width: 180px;
+  height: 120px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease; /* Add transition for transform property */
 }
 
 .stats-container:hover {
-    background-color: #5d154b;
-    color: #fff;
+  background-color: #5d154b;
+  color: #fff;
+  transform: translateY(-5px); /* Apply a slight vertical bounce on hover */
+}
+
+.stats-container:hover span {
+  background-color: #5d154b;
+  color: #fff;
+}
+
+.stats-container h6 {
+  font-size: 16px;
+  margin-top: 10px; /* Adjust top margin */
+  max-width: 100px;
+}
+
+.stats-container .icon-container {
+  position: absolute;
+  top: 30px; /* Position icon container at top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+}
+
+.stats-container i {
+  font-size: 54px;
+  color: #5d154b; /* Icon color */
 }
 
 .stats-container span {
-    font-size: 50px; /* Reduced font size for numbers */
-    font-weight: bold;
-    margin-left: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #5d154b; /* Tag icon color */
+  position: absolute;
+  top: 5px;
+  /* right: 5px; */
 }
 
-#totalMaleContainer,
-#totalFemaleContainer,
-#totalEmployeesContainer,
-#totalTSContainer,
-#totalFsContainer,
-#totalGsContainer {
-    font-size: 20px; /* Reduced font size for labels */
-}
 
 .content {
     padding: 20px;
@@ -124,3 +148,51 @@
     padding: 10px;
   }
   
+
+/* Chart Containers */
+.chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  height: 400px; /* Fixed height for charts */
+  padding: 20px;
+  flex: 1; /* Each container takes equal width */
+  margin-right: 10px; /* Provide spacing between containers */
+}
+
+.chart-container canvas {
+  width: 100%; /* Full width within container */
+  height: 70%; /* Adjusted height for better visualization */
+  margin-bottom: 20px;
+}
+
+/* Specific Container Sizes */
+.salary-chart-container {
+  max-width: 60%; /* Larger container for salary chart */
+}
+
+.department-chart-container {
+  max-width: 20%; /* Smaller container for department pie chart */
+}
+
+.graph-container {
+  max-width: 20%; /* Smaller container for graphs */
+}
+
+/* Responsive Layout Adjustments */
+@media (max-width: 768px) {
+  .chart-wrapper {
+    flex-direction: column; /* Stack containers vertically on smaller screens */
+  }
+
+  .chart-container {
+    height: auto; /* Auto height for responsiveness */
+    margin-bottom: 10px;
+  }
+}
