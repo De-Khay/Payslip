@@ -3,13 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/homes.css" />
+    <title>Firestore Data Display with Search</title>
+    <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <!-- <link rel="stylesheet" href="../css/styles.css" /> -->
-    <!-- Include Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-
+    <link rel="stylesheet" href="../css/header.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -19,16 +16,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script
-      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
-      type="module"
-    ></script>
-    <script
-      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
-      type="module"
-    ></script>
-    <script src="../js/home.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="container">
@@ -47,7 +34,7 @@
           <div class="menu">
             <p class="title">Main</p>
             <ul>
-              <li  class="active">
+              <li>
                 <a href="home.html"
                   ><i class="icon ph-bold ph-house-simple"></i
                   ><span class="text">Dashboard</span></a
@@ -86,7 +73,7 @@
                   <span class="text">Materials</span></a
                 >
               </li>
-              <li>
+              <li class="active">
                 <a href="payroll.html"
                   ><i class="fa-solid fa-money-bill"></i>
                   <span class="text">Payroll</span></a
@@ -151,19 +138,18 @@
           </ul>
         </div>
       </div>
-
-      <!-- main content -->
       <div class="content">
         <div class="header">
-          <h2>HR Dashboard</h2>
-          <div class="year-filter">
-            <select name="year" id="yearFilter">
+          <h2>Staff Records</h2>
+          <!-- <div class="year-filter">
+            <select name="year" id="yearFilter" aria-placeholder="year">
+              <option value="#">Year</option>
               <option value="2022">2022</option>
               <option value="2023">2023</option>
               <option value="2024">2024</option>
             </select>
             <button class="applyButton">Apply</button>
-          </div>
+          </div> -->
           <div class="options">
             <div class="custom-dropdown language-dropdown">
               <span class="dropdown-text">Language</span>
@@ -175,7 +161,7 @@
               </select>
             </div>
             <div class="custom-dropdown report-dropdown">
-              <span class="dropdown-text">Reports</span>
+              <span class="dropdown-text">Print</span>
               <i class="fas fa-caret-down dropdown-arrow"></i>
               <select name="reportType" id="reportTypeSelect">
                 <option value="word">Word</option>
@@ -194,122 +180,156 @@
             </div>
           </div>
         </div>
-        <hr class="separator" />
-        <div class="textHeader">
-          <!-- <h1>Welcome</h1> -->
+        <div class="overlay" id="overlay"></div>
+
+        <div class="form-container" id="formContainer" style="display: none">
+          <span class="close-btn" onclick="closeFormContainer()">&times;</span>
+          <form id="myForm">
+            <!-- Step 1 -->
+            <fieldset id="step1">
+              <h1>Employee Information</h1>
+              <h3>Please fill out this form with the required information</h3>
+
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" required />
+
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" required />
+
+              <label for="otherName">Other Name:</label>
+              <input type="text" id="otherName" />
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" required />
+
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="tel" id="phoneNumber" required />
+
+              <label for="address1">Address Line 1:</label>
+              <input type="text" id="address1" required />
+
+              <label for="address2">Address Line 2:</label>
+              <input type="text" id="address2" />
+
+              <label for="city">City:</label>
+              <input type="text" id="city" required />
+
+              <label for="state">State:</label>
+              <input type="text" id="state" required />
+
+              <label for="country">Country:</label>
+              <input type="text" id="country" required />
+
+              <label for="gender">Gender:</label>
+              <select id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <!-- Add more options as needed -->
+              </select>
+
+              <label for="staffId">Staff No/ID:</label>
+              <input type="text" id="staffId" required />
+
+              <label for="department">Department:</label>
+              <select id="department" required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="TS">Technical Services</option>
+                <option value="FS">Financial Services</option>
+                <option value="GS">General Services</option>
+                <!-- Add more options as needed -->
+              </select>
+
+              <label for="designation">Designation:</label>
+              <input type="text" id="designation" required />
+
+              <label for="unit">Unit:</label>
+              <input type="text" id="unit" required />
+
+              <button type="button" id="nextStep1">Next</button>
+            </fieldset>
+
+            <!-- Step 2 -->
+            <fieldset id="step2" style="display: none">
+              <h1>Payment Information</h1>
+              <p>Please fill out this form with the required information</p>
+
+              <label for="paymentInfo">Payment Info:</label>
+              <input type="text" id="paymentInfo" />
+
+              <label for="baseSalary">Base Salary:</label>
+              <input type="number" id="baseSalary" />
+
+              <label for="gross">Gross:</label>
+              <input type="number" id="gross" />
+
+              <label for="net">Net:</label>
+              <input type="number" id="net" />
+
+              <label for="allowance">Allowance:</label>
+              <input type="number" id="allowance" />
+
+              <label for="tax">Tax:</label>
+              <input type="number" id="tax" />
+
+              <label for="pension">Pension:</label>
+              <input type="number" id="pension" />
+
+              <label for="payPeriod">Pay Period:</label>
+              <input type="text" id="payPeriod" />
+
+              <label for="entitlement">Entitlement:</label>
+              <input type="text" id="entitlement" />
+
+              <button type="button" id="prevStep2">Previous</button>
+              <button type="submit" id="submit">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+        <hr />
+        <br />
+        <div>
+          <button id="addStaffButton">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
         </div>
 
-        <div class="contained">
-          <!-- Total Employees Container -->
-          <div class="stats-container" id="totalEmployeesContainer">
-            <div class="icon-container">
-              <i class="fas fa-users"></i>
-              <h6>Total Employees</h6>
-            </div>
-            <span id="totalEmployees" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
-            ></span>
+        <div id="staffDetailsContainer">
+          <div id="staffDetails">
+            <!-- Staff details will be displayed here -->
           </div>
-
-          <!-- Total Female Staff Container -->
-          <div class="stats-container" id="totalFemaleContainer">
-            <div class="icon-container">
-              <i class="fas fa-female"></i>
-              <h6>Female Staff</h6>
-            </div>
-            <span id="totalFemale" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
+          <div id="pagination">
+            <button id="prevButton">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <span
+              >Page <span id="currentPage"></span> of
+              <span id="totalPages"></span
             ></span>
-          </div>
-
-          <!-- Total Male Staff Container -->
-          <div class="stats-container" id="totalMaleContainer">
-            <div class="icon-container">
-              <i class="fas fa-male"></i>
-              <h6>Male Staff</h6>
-            </div>
-            <span id="totalMale" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
-            ></span>
-          </div>
-
-          <!-- Total TS Staff Container -->
-          <div class="stats-container" id="totalTSContainer">
-            <div class="icon-container">
-              <i class="fas fa-user-graduate"></i>
-              <h6>Technical Services</h6>
-            </div>
-            <span id="totalTs" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
-            ></span>
-          </div>
-
-          <!-- Total FS Staff Container -->
-          <div class="stats-container" id="totalFsContainer">
-            <div class="icon-container">
-              <i class="fas fa-user-tie"></i>
-              <h6>Financial Services</h6>
-            </div>
-            <span id="totalFs" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
-            ></span>
-          </div>
-
-          <!-- Total GS Staff Container -->
-          <div class="stats-container" id="totalGsContainer">
-            <div class="icon-container">
-              <i class="fas fa-user-secret"></i>
-              <h6>General Services</h6>
-            </div>
-            <span id="totalGs" class="tag-icon"
-              ><i class="fas fa-calendar-alt"></i
-            ></span>
-          </div>
-
-          <!-- Container 1: Bar Chart -->
-          <div class="chart-wrapper">
-            <!-- Container 1: Bar Chart -->
-            <!-- Chart Containers -->
-            <div
-              class="chart-container salary-chart-container"
-              id="salaryChartContainer"
-            >
-              <div>Base Salary Data <span id="totalBaseSalary"></span></div>
-              <hr />
-              <br />
-              <canvas id="salaryChartCanvas"></canvas>
-            </div>
-
-            <div
-              class="chart-container department-chart-container"
-              id="departmentChartContainer"
-            >
-              <div>Department Pie Chart <span id="totalBaseSalary"></span></div>
-              <hr />
-              <br />
-              <canvas id="departmentChartCanvas"></canvas>
-            </div>
-
-            <div class="chart-container graph-container" id="graphContainer">
-              <div>Tax and Pension Data <span id="totalBaseSalary"></span></div>
-              <hr />
-              <br />
-              <canvas id="salaryGraphCanvas"></canvas>
-              <canvas id="pensionTaxGraphCanvas"></canvas>
-              <div>Total Pensions: <span id="totalPensions"></span></div>
-              <div>Total Tax: <span id="totalTax"></span></div>
-            </div>
+            <button id="nextButton">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- <script src="../js//userdetails.js" type="module"></script> -->
+    <!-- Include Firebase JavaScript SDK -->
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
+      type="module"
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
+      type="module"
+    ></script>
+
+    <script src="../js/payroll.js" type="module"></script>
+    <script src="../js/script.js" type="module"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
       crossorigin="anonymous"
     ></script>
-    <script src="../js/sidenav.js"></script>
   </body>
 </html>

@@ -81,6 +81,7 @@ function validateStep1() {
   const requiredFields = [
     'firstName',
     'lastName',
+    'otherName',
     'email',
     'phoneNumber',
     'address1',
@@ -149,10 +150,54 @@ async function addPayslipToFirestore(formData) {
     const payslipsCollection = collection(db, 'payslip');
     const docRef = await addDoc(payslipsCollection, formData);
     console.log('Payslip added successfully with ID:', docRef.id);
-    return docRef;
+    // Show success message with an OK button to refresh the page
+    showSuccessMessageAndRefresh();
   } catch (error) {
     console.error('Error adding payslip:', error);
-    throw error; // Rethrow the error if needed
+    // Show error message if payslip addition fails
+    showErrorMessage();
   }
 }
 
+function showSuccessMessageAndRefresh() {
+  const message = 'Record added successfully!';
+  alert(message); // Show a popup message
+  // After the user clicks OK, refresh the page
+  window.location.reload();
+}
+
+function showErrorMessage() {
+  const message = 'Record not added successfully - Contact IT support';
+  alert(message); // Show a popup message
+}
+
+async function performFirestoreOperationWithRetry() {
+  const maxAttempts = 3;
+  let currentAttempt = 0;
+
+  while (currentAttempt < maxAttempts) {
+    try {
+      const result = await yourFirestoreOperation();
+      console.log('Firestore operation successful:', result);
+      return result; // Operation succeeded, return the result
+    } catch (error) {
+      console.error('Firestore operation failed (attempt ' + (currentAttempt + 1) + '):', error);
+      currentAttempt++;
+      // Increase timeout or delay before retrying (optional)
+      await delay(3000); // Wait for 3 seconds before retrying
+    }
+  }
+
+  console.error('Firestore operation failed after ' + maxAttempts + ' attempts.');
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Example usage:
+performFirestoreOperationWithRetry().then(() => {
+  console.log('Firestore operation completed successfully.');
+}).catch(err => {
+  console.error('Firestore operation failed:', err);
+});

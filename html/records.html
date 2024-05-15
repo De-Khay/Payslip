@@ -6,6 +6,7 @@
     <title>Firestore Data Display with Search</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/header.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -73,6 +74,12 @@
                 >
               </li>
               <li>
+                <a href="payroll.html"
+                  ><i class="fa-solid fa-money-bill"></i>
+                  <span class="text">Payroll</span></a
+                >
+              </li>
+              <li>
                 <a href="#"
                   ><i class="icon ph-bold ph-chart-bar"></i
                   ><span class="text">Reports</span
@@ -132,12 +139,45 @@
         </div>
       </div>
       <div class="content">
-        <div class="records-header">
+        <div class="header">
           <h2>Staff Records</h2>
-
-          <div class="searchStaff">
-            <input type="text" id="staffIdInput" placeholder="Search..." />
-            <button id="fetchDetailsButton">Search</button>
+          <!-- <div class="year-filter">
+            <select name="year" id="yearFilter" aria-placeholder="year">
+              <option value="#">Year</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+            <button class="applyButton">Apply</button>
+          </div> -->
+          <div class="options">
+            <div class="custom-dropdown language-dropdown">
+              <span class="dropdown-text">Language</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="language" id="languageSelect">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+              </select>
+            </div>
+            <div class="custom-dropdown report-dropdown">
+              <span class="dropdown-text">Print</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="reportType" id="reportTypeSelect">
+                <option value="word">Word</option>
+                <option value="pdf">PDF</option>
+                <option value="excel">Excel</option>
+              </select>
+            </div>
+            <div class="custom-dropdown department-dropdown">
+              <span class="dropdown-text">Department</span>
+              <i class="fas fa-caret-down dropdown-arrow"></i>
+              <select name="department" id="departmentSelect">
+                <option value="technical">Technical Services</option>
+                <option value="general">General Services</option>
+                <option value="financial">Financial Services</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="overlay" id="overlay"></div>
@@ -181,7 +221,7 @@
               <input type="text" id="country" required />
 
               <label for="gender">Gender:</label>
-              <select id="department" required>
+              <select id="gender" required>
                 <option value="" disabled selected>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -258,6 +298,18 @@
           <div id="staffDetails">
             <!-- Staff details will be displayed here -->
           </div>
+          <div id="pagination">
+            <button id="prevButton">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <span
+              >Page <span id="currentPage"></span> of
+              <span id="totalPages"></span
+            ></span>
+            <button id="nextButton">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -279,34 +331,5 @@
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
       crossorigin="anonymous"
     ></script>
-    <script>
-      const recordsPerPage = 10;
-      let currentPage = 1;
-
-      function displayRecords(records) {
-        const startIndex = (currentPage - 1) * recordsPerPage;
-        const endIndex = startIndex + recordsPerPage;
-        const paginatedRecords = records.slice(startIndex, endIndex);
-
-        // Display paginatedRecords in the table
-      }
-
-      // Event listener for next button
-      document.getElementById('nextButton').addEventListener('click', () => {
-        currentPage++;
-        displayRecords(allRecords);
-      });
-
-      // Event listener for previous button
-      document.getElementById('prevButton').addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          displayRecords(allRecords);
-        }
-      });
-
-      // Initial display of records
-      displayRecords(allRecords);
-    </script>
   </body>
 </html>
