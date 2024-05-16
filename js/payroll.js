@@ -98,16 +98,20 @@ function displayPayslips(docs, currentPage, pageSize) {
     row.insertCell().textContent = payslipData.baseSalary;
     row.insertCell().textContent = payslipData.designation;
 
-    // Add "Details" button
-    const detailsCell = row.insertCell();
+    // Add action buttons
+    const actionsCell = row.insertCell();
+
+    // Details Button
     const detailsButton = document.createElement('button');
     detailsButton.innerHTML = 'Details';
     detailsButton.classList.add('details-button');
     detailsButton.setAttribute('data-staff-id', payslipData.staffId);
-    detailsCell.appendChild(detailsButton);
+    detailsButton.addEventListener('click', () => {
+      showStaffDetailsPopup(payslipData);
+    });
+    actionsCell.appendChild(detailsButton);
 
-    // Add "Email" button
-    const emailCell = row.insertCell();
+    // Email Button
     const emailButton = document.createElement('button');
     emailButton.innerHTML = '<i class="fas fa-envelope"></i>';
     emailButton.classList.add('email-button');
@@ -115,27 +119,25 @@ function displayPayslips(docs, currentPage, pageSize) {
       const email = payslipData.email;
       window.location.href = `mailto:${email}`;
     });
-    emailCell.appendChild(emailButton);
+    actionsCell.appendChild(emailButton);
 
-    // Add "Print" button
-    const printCell = row.insertCell();
+    // Print Button
     const printButton = document.createElement('button');
     printButton.innerHTML = '<i class="fas fa-print"></i>';
     printButton.classList.add('print-button');
     printButton.addEventListener('click', () => {
-      printStaffDetails(payslipData); // Call function to print staff details
+      printStaffDetails(payslipData);
     });
-    printCell.appendChild(printButton);
+    actionsCell.appendChild(printButton);
 
-    // Add "Edit" button
-    const editCell = row.insertCell();
+    // Edit Button
     const editButton = document.createElement('button');
     editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.classList.add('edit-button');
     editButton.addEventListener('click', () => {
       showStaffDetailsPopup(payslipData);
     });
-    editCell.appendChild(editButton);
+    actionsCell.appendChild(editButton);
   });
 
   // Clear existing content and append table to the element
@@ -143,137 +145,149 @@ function displayPayslips(docs, currentPage, pageSize) {
   staffDetailsElement.appendChild(table);
 }
 
-// Define the calculateTotals function globally
+function showStaffDetailsPopup(payslipData) {
+  const popup = document.getElementById('staffDetailsPopup');
+  const popupEmployeeName = document.getElementById('popupEmployeeName');
+  const popupDepartment = document.getElementById('popupDepartment');
+  const popupBaseSalary = document.getElementById('popupBaseSalary');
+
+  if (!popup || !popupEmployeeName || !popupDepartment || !popupBaseSalary) {
+    console.error('Popup elements not found.');
+    return;
+  }
+
+  // Populate popup content with payslip data
+  popupEmployeeName.textContent = `${payslipData.firstName} ${payslipData.lastName}`;
+  popupDepartment.textContent = payslipData.department;
+  popupBaseSalary.textContent = payslipData.baseSalary;
+
+  // Populate deductions with predefined percentages
+  const taxRateInput = document.getElementById('taxRate');
+  const pensionInput = document.getElementById('pension');
+
+  if (taxRateInput && pensionInput) {
+    taxRateInput.value = (payslipData.baseSalary * 0.075).toFixed(2); // 7.5% tax
+    pensionInput.value = (payslipData.baseSalary * 0.08).toFixed(2); // 8% pension
+  }
+
+  // Show the popup
+  popup.style.display = 'block';
+
+  // Attach event listeners to input fields to trigger calculation
+  const inputFields = [
+    taxRateInput,
+    pensionInput,
+    document.getElementById('latenessFee'),
+    document.getElementById('absenceFee'),
+    document.getElementById('salaryAdvance'),
+    document.getElementById('loan'),
+    document.getElementById('missedDeliverables'),
+    document.getElementById('otherDeductions'),
+    document.getElementById('bonus'),
+    document.getElementById('extraHoursDays'),
+    document.getElementById('overtimePay'),
+    document.getElementById('commission'),
+    document.getElementById('travelAllowance'),
+  ];
+
+  // Add input event listeners to all input fields
+  inputFields.forEach((inputField) => {
+    if (inputField) {
+      inputField.addEventListener('input', calculateTotals);
+    }
+  });
+
+  // Initial calculation
+  calculateTotals();
+}
+
 function calculateTotals() {
-    // Calculate totals dynamically
-    const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
-    const pension = parseFloat(document.getElementById('pension').value) || 0;
-    const latenessFee = parseFloat(document.getElementById('latenessFee').value) || 0;
-    const absenceFee = parseFloat(document.getElementById('absenceFee').value) || 0;
-    const salaryAdvance = parseFloat(document.getElementById('salaryAdvance').value) || 0;
-    const loan = parseFloat(document.getElementById('loan').value) || 0;
-    const missedDeliverables = parseFloat(document.getElementById('missedDeliverables').value) || 0;
-    const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
-  
-    const totalDebits = taxRate + pension + latenessFee + absenceFee + salaryAdvance + loan + missedDeliverables + otherDeductions;
-    
-    // Update total debit value in the popup
-    document.getElementById('totalDebits').textContent = totalDebits;
-  
-    // Calculate and update total amount payable
-    const totalCredit = parseFloat(document.getElementById('totalCredit').textContent) || 0;
-    const totalPayable = totalCredit - totalDebits;
-    document.getElementById('totalPayable').textContent = totalPayable;
-  }
-  
-  function showStaffDetailsPopup(payslipData) {
-    // Create a popup/modal
-    const popup = document.createElement('div');
-    popup.classList.add('popup');
-  
-    const content = document.createElement('div');
-    content.classList.add('popup-content');
-  
-    // Populate popup content with staff details, deductions, and allowances
-    content.innerHTML = `
-      <h2>${payslipData.firstName} ${payslipData.lastName}</h2>
-      <p><strong>Department:</strong> ${payslipData.department}</p>
-      <p><strong>Base Salary:</strong> ${payslipData.baseSalary}</p>
-  
-      <h3>Deductions</h3>
-      <table>
-        <tr>
-          <td>Tax Rate (7.5%):</td>
-          <td><input type="number" id="taxRate" value="${payslipData.baseSalary * 0.075}"></td>
-        </tr>
-        <tr>
-          <td>Pension (8%):</td>
-          <td><input type="number" id="pension" value="${payslipData.baseSalary * 0.08}"></td>
-        </tr>
-        <tr>
-          <td>Lateness Fee:</td>
-          <td><input type="number" id="latenessFee"></td>
-        </tr>
-        <tr>
-          <td>Absence Fee:</td>
-          <td><input type="number" id="absenceFee"></td>
-        </tr>
-        <tr>
-          <td>Salary Advance:</td>
-          <td><input type="number" id="salaryAdvance"></td>
-        </tr>
-        <tr>
-          <td>Loan:</td>
-          <td><input type="number" id="loan"></td>
-        </tr>
-        <tr>
-          <td>Missed Deliverables:</td>
-          <td><input type="number" id="missedDeliverables"></td>
-        </tr>
-        <tr>
-          <td>Other Deductions:</td>
-          <td><input type="number" id="otherDeductions"></td>
-        </tr>
-      </table>
-  
-      <h3>Allowances</h3>
-      <table>
-        <tr>
-          <td>Bonus:</td>
-          <td><input type="number" id="bonus"></td>
-        </tr>
-        <tr>
-          <td>Extra Hours/Days:</td>
-          <td><input type="number" id="extraHoursDays"></td>
-        </tr>
-      </table>
-  
-      <p><button onclick="calculateTotals()">Calculate Totals</button></p>
-      <p><strong>Total Credit:</strong> <span id="totalCredit"></span></p>
-      <p><strong>Total Debits:</strong> <span id="totalDebits"></span></p>
-      <p><strong>Total Amount Payable:</strong> <span id="totalPayable"></span></p>
-    `;
-  
-    popup.appendChild(content);
-    document.body.appendChild(popup);
-  }
-  
+  const baseSalary =
+    parseFloat(document.getElementById('popupBaseSalary').textContent) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const pension = parseFloat(document.getElementById('pension').value) || 0;
+  const latenessFee =
+    parseFloat(document.getElementById('latenessFee').value) || 0;
+  const absenceFee =
+    parseFloat(document.getElementById('absenceFee').value) || 0;
+  const salaryAdvance =
+    parseFloat(document.getElementById('salaryAdvance').value) || 0;
+  const loan = parseFloat(document.getElementById('loan').value) || 0;
+  const missedDeliverables =
+    parseFloat(document.getElementById('missedDeliverables').value) || 0;
+  const otherDeductions =
+    parseFloat(document.getElementById('otherDeductions').value) || 0;
+  const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+  const extraHoursDays =
+    parseFloat(document.getElementById('extraHoursDays').value) || 0;
+  const overtimePay =
+    parseFloat(document.getElementById('overtimePay').value) || 0;
+  const commission =
+    parseFloat(document.getElementById('commission').value) || 0;
+  const travelAllowance =
+    parseFloat(document.getElementById('travelAllowance').value) || 0;
+
+  // Calculate total debits
+  const totalDebits =
+    taxRate +
+    pension +
+    latenessFee +
+    absenceFee +
+    salaryAdvance +
+    loan +
+    missedDeliverables +
+    otherDeductions;
+
+  // Calculate total credit
+  const totalCredit =
+    baseSalary +
+    bonus +
+    extraHoursDays +
+    overtimePay +
+    commission +
+    travelAllowance;
+
+  // Display calculated totals
+  document.getElementById('totalCredit').textContent = totalCredit.toFixed(2);
+  document.getElementById('totalDebits').textContent = totalDebits.toFixed(2);
+
+  // Calculate total payable amount
+  const totalPayable = totalCredit - totalDebits;
+  document.getElementById('totalPayable').textContent = totalPayable.toFixed(2);
+}
 
 function printStaffDetails(payslipData) {
-  // Construct printable content
   const printableContent = `
-      <h2>Employee Details</h2>
-      <p><strong>Staff ID:</strong> ${payslipData.staffId}</p>
-      <p><strong>First Name:</strong> ${payslipData.firstName}</p>
-      <p><strong>Last Name:</strong> ${payslipData.lastName}</p>
-      <p><strong>Other Name:</strong> ${payslipData.otherName}</p>
-      <p><strong>Email:</strong> ${payslipData.email}</p>
-      <p><strong>Phone Number:</strong> ${payslipData.phoneNumber}</p>
-      <p><strong>Department:</strong> ${payslipData.department}</p>
-      <p><strong>Base Salary:</strong> ${payslipData.baseSalary}</p>
-    `;
+        <h2>Employee Details</h2>
+        <p><strong>Staff ID:</strong> ${payslipData.staffId}</p>
+        <p><strong>First Name:</strong> ${payslipData.firstName}</p>
+        <p><strong>Last Name:</strong> ${payslipData.lastName}</p>
+        <p><strong>Other Name:</strong> ${payslipData.otherName}</p>
+        <p><strong>Email:</strong> ${payslipData.email}</p>
+        <p><strong>Phone Number:</strong> ${payslipData.phoneNumber}</p>
+        <p><strong>Department:</strong> ${payslipData.department}</p>
+        <p><strong>Base Salary:</strong> ${payslipData.baseSalary}</p>
+      `;
 
-  // Create a new window for printing
   const printWindow = window.open('', '_blank');
-
-  // Write printable content to the new window
   printWindow.document.open();
   printWindow.document.write(`
-      <html>
-        <head>
-          <title>Employee Details</title>
-        </head>
-        <body>
-          ${printableContent}
-          <script>
-            // Automatically trigger print dialog on window load
-            window.onload = () => window.print();
-          </script>
-        </body>
-      </html>
-    `);
+        <html>
+          <head>
+            <title>Employee Details</title>
+          </head>
+          <body>
+            ${printableContent}
+            <script>
+              window.onload = () => window.print();
+            </script>
+          </body>
+        </html>
+      `);
   printWindow.document.close();
 }
+
+// Optional: You can add jQuery event handlers here if needed
 
 $('.menu > ul > li').click(function (e) {
   // Remove the 'active' class from other menu items

@@ -6,7 +6,8 @@
     <title>Firestore Data Display with Search</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/payroll.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -314,6 +315,92 @@
       </div>
     </div>
 
+    <!-- Include your existing HTML structure, and add the following section for the popup content -->
+    <div class="popup" id="staffDetailsPopup">
+      <div class="popup-content">
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+        <h2 id="popupEmployeeName"></h2>
+        <p><strong>Department:</strong> <span id="popupDepartment"></span></p>
+        <p><strong>Base Salary:</strong> <span id="popupBaseSalary"></span></p>
+        <br>
+        <hr>
+        <br>
+        <div class="popup-table">
+          <h3>Deductions</h3>
+          <table>
+            <tr>
+              <td>Tax Rate (7.5%):</td>
+              <td><input type="number" id="taxRate" value="" /></td>
+            </tr>
+            <tr>
+              <td>Pension (8%):</td>
+              <td><input type="number" id="pension" value="" /></td>
+            </tr>
+            <tr>
+              <td>Lateness Fee:</td>
+              <td><input type="number" id="latenessFee" value="" /></td>
+            </tr>
+            <tr>
+              <td>Absence Fee:</td>
+              <td><input type="number" id="absenceFee" value="" /></td>
+            </tr>
+            <tr>
+              <td>Salary Advance:</td>
+              <td><input type="number" id="salaryAdvance" value="" /></td>
+            </tr>
+            <tr>
+              <td>Loan:</td>
+              <td><input type="number" id="loan" value="" /></td>
+            </tr>
+            <tr>
+              <td>Missed Deliverables:</td>
+              <td><input type="number" id="missedDeliverables" value="" /></td>
+            </tr>
+            <tr>
+              <td>Other Deductions:</td>
+              <td><input type="number" id="otherDeductions" value="" /></td>
+            </tr>
+          </table>
+       
+          <h3>Allowances</h3>
+          <table>
+            <tr>
+              <td>Bonus:</td>
+              <td><input type="number" id="bonus" value="" /></td>
+            </tr>
+            <tr>
+              <td>Extra Hours/Days:</td>
+              <td><input type="number" id="extraHoursDays" value="" /></td>
+            </tr>
+            <!-- Add more allowance rows below -->
+            <tr>
+              <td>Overtime Pay:</td>
+              <td><input type="number" id="overtimePay" value="" /></td>
+            </tr>
+            <tr>
+              <td>Commission:</td>
+              <td><input type="number" id="commission" value="" /></td>
+            </tr>
+            <tr>
+              <td>Travel Allowance:</td>
+              <td><input type="number" id="travelAllowance" value="" /></td>
+            </tr>
+            <tr>
+              <td>Other Allowances:</td>
+              <td><input type="number" id="travelAllowance" value="" /></td>
+            </tr>
+            <!-- Add as many rows as needed -->
+          </table>
+        </div>
+        <p><button onclick="calculateTotals()">Calculate Totals</button></p>
+        <p><strong>Total Credit:</strong> <span id="totalCredit"></span></p>
+        <p><strong>Total Debits:</strong> <span id="totalDebits"></span></p>
+        <p>
+          <strong>Total Amount Payable:</strong> <span id="totalPayable"></span>
+        </p>
+      </div>
+    </div>
+
     <!-- Include Firebase JavaScript SDK -->
     <script
       src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"
@@ -325,7 +412,7 @@
     ></script>
 
     <script src="../js/payroll.js" type="module"></script>
-    <script src="../js/script.js" type="module"></script>
+    <!-- <script src="../js/script.js" type="module"></script> -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
       integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
